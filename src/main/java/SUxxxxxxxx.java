@@ -19,19 +19,22 @@ public class SUxxxxxxxx {
         //game board setup
         int colorCount = 2;
         int boardSize = (int)(58*Math.pow(colorCount-1, 3) - 310*Math.pow(colorCount-1, 2) + 546*(colorCount-1) - 286);//formula for game size 
-        char[][] gameBoard = new char[boardSize][boardSize];
+        int xPos = 0, yPos = 0;
+        
+        //Colors:
+        //0 = white (inactive)
+        //1 = gray (active)
+        //2+ = yellow, green, red ... 
+        byte[][] gameBoard = new byte[boardSize][boardSize];
         double blockSize=1.0/boardSize;
-        StdOut.println("Board size: " + boardSize);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.clear(Color.BLACK);
        
         //set game board default values & drawing
-        
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.filledSquare(0, 0, 1);
         for (int y=0; y<boardSize; y++) {
             for (int x=0; x<boardSize; x++){
-                gameBoard[y][x] = ((x==0)?'O':'C');  //close
-                StdDraw.setPenColor(gameBoard[y][x]=='O'?Color.GRAY:Color.WHITE);
-                StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2-0.005);
+                //make first column active and everything else inactive
+                gameBoard[y][x] = (byte) ((x==0)?1:0); 
             }
         }
         
@@ -46,6 +49,27 @@ public class SUxxxxxxxx {
         // Enter the game loop. What will happen if you initialize gameIsRunning to false?
         while (gameIsRunning) {
             //gameIsRunning = false;
+            
+            StdDraw.clear(Color.BLACK);
+            DrawPosition(xPos, yPos, blockSize);
+            DrawGame(gameBoard, boardSize, blockSize);
+            StdDraw.show();
+            
+            
+            //Input
+            if(StdIn.hasNextLine()){
+                char c = Character.toUpperCase(StdIn.readChar());
+                
+                //TODO: Validate
+                if (c=='D')
+                    xPos++;
+                else if (c=='A')
+                    xPos--;
+                else if (c=='W')
+                    yPos--;
+                else if (c=='S')
+                    yPos++;
+            }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
 
@@ -55,6 +79,28 @@ public class SUxxxxxxxx {
     
     // For the second hand-in, you must use functions effectively wherever possible. Put these functions here.
 
+    private static Color getTileColor(byte number){
+        switch (number) {
+            case 1:
+                return Color.GRAY;
+            default:
+                return Color.WHITE;
+        }
+    }
+    
+    private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){        
+        for (int y=0; y<boardSize; y++) {
+            for (int x=0; x<boardSize; x++){                
+                StdDraw.setPenColor(getTileColor(gameBoard[y][x]));
+                StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2-0.005);
+            }
+        }
+    }
+    
+    private static void DrawPosition(int x, int y, double blockSize){
+        StdDraw.setPenColor(Color.MAGENTA);
+        StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2);
+    }
 
 }
 
