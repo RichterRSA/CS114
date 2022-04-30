@@ -316,14 +316,17 @@ return brace_found;
 public static boolean split_detect(int[][] gameboard){
     
     boolean split_found = true;
+    // loop through rows of gameboard
     for (int i = 0;i<=gameboard[0].length-1;i++){
-        
+        //check if a split row has been found in previous iteration and terminate in case of...
         if ((split_found == true)&(i !=0)){
             break;}
-        
+        //loop through columns of gameboard
         for(int x =0;x<=gameboard.length-1;x++){
+            //if to make sure that indexes out of array range are not referenced in code below
             if(i+1<=gameboard[0].length-1){
                 System.out.println(gameboard[x][i]+"to "+gameboard[x][i+1]);
+            //if condition to disqualify a row as a split
             if (gameboard[x][i]!= gameboard[x][i+1]){
             split_found = false;
                 System.out.println("false");
@@ -332,8 +335,96 @@ public static boolean split_detect(int[][] gameboard){
     return split_found;
 }
 
+public static String move_validator(int k,int[][] gameboard, boolean self_solver){
+ boolean blockade = false;
+ boolean dead_end = false;
+ boolean split = false;
+ boolean termination = false;
+ String error_message = "";
+ blockade = blockade_detect(k,gameboard);
+ dead_end = dead_end_detect(gameboard);
+ split = split_detect(gameboard);
+ if ((blockade)&(dead_end)&(split)){
+     error_message = "Termination: You have caused a blockade, a dead end and split!";
+    termination = true;}
+     
+ else if((blockade)&(dead_end)){
+     error_message = "Termination: You have caused a blockade and a dead end!!";
+    termination = true;}
+ else if ((blockade)&(split)){
+    error_message = "Termination: You have caused a blockade and a split!";
+    termination = true;}
+ else if((dead_end)&(split)){
+    error_message = "Termination: You have caused a dead end and a split!";
+    termination = true;}
+ else if(blockade){
+    error_message = "Termination: You have caused a blockade!";
+    termination = true;}
+ else if (dead_end){
+    error_message = "Termination: You have caused a dead end!";
+    termination = true;}
+ else if (split){
+    error_message = "Termination: You have caused a split!";
+    termination = true;}
+ 
+if (self_solver == false){
+    return error_message;}
+else if ((self_solver)&(termination)){
+    return "true";}
+else{
+return "false";}
+}
+
+
+public static int[] self_solver(int[][] gameBoard, boolean termination,int[] currentPos,int[] colours,int k,boolean play){
+//    int[] pos1 = {currentPos[0],currentPos[1]-1};
+//    int[] pos2 = {currentPos[0],currentPos[1]+1};
+//    int[] pos3 = {currentPos[0]-1,currentPos[1]};
+//    int[] pos4 = {currentPos[0]+1,currentPos[1]};
+    int[][] possible_positions = {{currentPos[0],currentPos[1]-1},{currentPos[0],currentPos[1]+1},{currentPos[0]-1,currentPos[1]},{currentPos[0]+1,currentPos[1]}};
+    int[] new_pos = {-1,-1};//{-1,-1} will be recognized as a error code from the method that called. This error code will signal that there is no further moves to be made.
+    String valid_move = "";
+    boolean move_possible = false;
+    
+    
+        for (int i =0;i<=colours.length-1;i++){
+            if (gameBoard[possible_positions[i][0]][possible_positions[i][1]]==0){
+                gameBoard[possible_positions[i][0]][possible_positions[i][1]] = colours[i]; 
+                valid_move = move_validator(3,gameBoard,true);
+                if (valid_move == "true"){
+                    new_pos = possible_positions[i];
+                    break;}
+            
+            
+        }
+        
+        }
+        
+
+        return new_pos;
+
+
+    }
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 }
+        
 
