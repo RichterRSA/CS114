@@ -317,18 +317,22 @@ public static boolean split_detect(int[][] gameboard){
     
     boolean split_found = true;
     for (int i = 0;i<=gameboard[0].length-1;i++){
-        split_found = true;
+        
+        if ((split_found == true)&(i !=0)){
+            break;}
+        
         for(int x =0;x<=gameboard.length-1;x++){
-            if(i+1<=gameboard[i].length-1){
-            if (gameboard[i][x]!= gameboard[i+1][x]){
-            split_found = false;}
-        }}
-        
-        
-        
+            if(i+1<=gameboard[0].length-1){
+                System.out.println(gameboard[x][i]+"to "+gameboard[x][i+1]);
+            if (gameboard[x][i]!= gameboard[x][i+1]){
+            split_found = false;
+                System.out.println("false");
+            break;}}}   
     }
     return split_found;
 }
+
+
 
 
 }
