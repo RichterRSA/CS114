@@ -17,7 +17,7 @@ public class SUxxxxxxxx {
     public static void main(String[] args) {
         //get game mode (0=first hand in, 1=second, 2=automatic solver)
         
-        int mode = 0, gui = 0, n = 2, k = 3;
+        int mode = 0, gui = 1, n = 2, k = 3;
         
         //validate argument amount
         if(args.length<4){ // too short
