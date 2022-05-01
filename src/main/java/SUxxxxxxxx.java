@@ -199,7 +199,7 @@ public class SUxxxxxxxx {
                             gameBoard[iRow][iCol+1] = 1;
                 }
                 
-                StdOut.println(move_validator(k, gameBoard, gameIsRunning));
+                StdOut.println(move_validator(k, gameBoard, false));
             }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
