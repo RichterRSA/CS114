@@ -314,43 +314,43 @@ public class SUxxxxxxxx {
              
             for (int x = 0; x <= gameboard[i].length-1;x++){
                 //System.out.println(gameboard[i][x]);
-                if (gameboard[i][x]<2)
-                    break;
-                
+                 
                 if (x +1<= gameboard[i].length-1){
-                if (gameboard[i][x] == gameboard[i][x+1]){
+                    //System.out.println(gameboard[i][x]);
+                if ((gameboard[i][x] == gameboard[i][x+1])&(gameboard[i][x]>=2)){
                     same_counter += 1;
                 if (same_counter ==k-1){
                     blockade_detect = true;
-                    break;
-            }
-                }
+                    System.out.println("error at the vertical");
+                    break;}}
+                else{
+                same_counter=0;}
             }
             }
            
 
            }
+        
+        
+     
         same_counter = 0;
         for (int i = 0; i <= gameboard[0].length-1;i++){
             //System.out.println(i);
             for (int x = 0; x <= gameboard.length-1;x++){
                 
-                if (gameboard[i][x]<2)
-                    break;
-                
-                
                 if (x +1 <= gameboard.length-1){
                     //System.out.println(gameboard[x][i]+"to "+gameboard[x+1][i]);
-                if (gameboard[x][i] == gameboard[x+1][i]){
+                if ((gameboard[x][i] == gameboard[x+1][i])&(gameboard[x][i]>=2)){
                     same_counter += 1;
                     //System.out.println("s"+same_counter);
-                    if (same_counter ==k){
+                    if (same_counter ==k-1){
+                        System.out.println("error at the horisontal");
                         blockade_detect = true;
-                        StdOut.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-                        break;
-                   
+                        break; 
                 }
                 }
+                else{
+                same_counter =0;}
             }
             
         }
@@ -383,14 +383,14 @@ public static boolean dead_end_detect(byte[][] gameboard){
             brace_start = gameboard[x][i];
             if ((gameboard[x][i] == brace_start)&(x>0)&(brace_pattern.length()>=3)){   
                 
-                //System.out.println("Brace:"+brace_pattern);
+                System.out.println("Brace:"+brace_pattern);
                 
                     for (int z = x;z<=gameboard.length-1;z++){
                        
                         brace_pattern_current =brace_pattern.charAt(q)+"";
-
+                        System.out.println(brace_pattern_current+"to "+gameboard[z][i]);
                         if (Integer.parseInt(brace_pattern_current) == gameboard[z][i]){
-                            if ((gameboard[z][i]!=brace_start)&(q>0)&(q<brace_pattern.length()-1)){
+                            if ((gameboard[z][i]!=brace_start)&(q>0)&(q<brace_pattern.length())){
                                 bool_inside_different = true;}
                             same_counter +=1;}
                         
@@ -410,7 +410,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
                     
             }  
         else{
-            if (start_bool == false){
+            if ((start_bool == false)&(gameboard[i][x]>=2)){
             brace_pattern = brace_pattern + Integer.toString(gameboard[i][x]);
             }
             start_bool = false;
