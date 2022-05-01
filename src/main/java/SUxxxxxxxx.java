@@ -307,10 +307,16 @@ public class SUxxxxxxxx {
         boolean blockade_detect = false;
 
         
+        
+        
         for(int i = 0; i <= gameboard.length-1;i++){
             //System.out.println(i);
+             
             for (int x = 0; x <= gameboard[i].length-1;x++){
                 //System.out.println(gameboard[i][x]);
+                if (gameboard[i][x]<2)
+                    break;
+                
                 if (x +1<= gameboard[i].length-1){
                 if (gameboard[i][x] == gameboard[i][x+1]){
                     same_counter += 1;
@@ -329,6 +335,10 @@ public class SUxxxxxxxx {
             //System.out.println(i);
             for (int x = 0; x <= gameboard.length-1;x++){
                 
+                if (gameboard[i][x]<2)
+                    break;
+                
+                
                 if (x +1 <= gameboard.length-1){
                     //System.out.println(gameboard[x][i]+"to "+gameboard[x+1][i]);
                 if (gameboard[x][i] == gameboard[x+1][i]){
@@ -336,6 +346,7 @@ public class SUxxxxxxxx {
                     //System.out.println("s"+same_counter);
                     if (same_counter ==k){
                         blockade_detect = true;
+                        StdOut.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
                         break;
                    
                 }
