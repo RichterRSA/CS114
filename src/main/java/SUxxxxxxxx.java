@@ -320,7 +320,7 @@ public class SUxxxxxxxx {
                 if (x +1<= gameboard[i].length-1){
                 if (gameboard[i][x] == gameboard[i][x+1]){
                     same_counter += 1;
-                if (same_counter ==k){
+                if (same_counter ==k-1){
                     blockade_detect = true;
                     break;
             }
@@ -502,6 +502,7 @@ public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] cu
     
         for (int i =0;i<=colours.length-1;i++){
             if (gameBoard[possible_positions[i][0]][possible_positions[i][1]]==0){
+                if ((colours[i] != 0)&(colours[i]!=1))
                 gameBoard[possible_positions[i][0]][possible_positions[i][1]] = colours[i]; 
                 valid_move = move_validator(3,gameBoard,true);
                 if (valid_move == "true"){
