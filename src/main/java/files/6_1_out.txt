@@ -1,0 +1,176 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYG.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYGGY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYGGYY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYGGYYG.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+GYGGYYGG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Termination: You have caused a dead end!
+Score: 25%
+Moves: 16
+Game ended!

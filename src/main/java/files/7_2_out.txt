@@ -1,0 +1,656 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGG.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYY.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYY.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGG.
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+Y.******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YY.*****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYY.****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYY.***
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYY.**
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYY.*
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYY.
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+G.******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GG.*****
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGG.****
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGG.***
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGG.**
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGG.*
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGG.
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+Y.******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YY.*****
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYY.****
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYY.***
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYY.**
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYY.*
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYY.
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+G.******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GG.*****
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGG.****
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGG.***
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGG.**
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGG.*
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGG.
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+.*******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+Y.******
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YY.*****
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYY.****
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYY.***
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYY.**
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYY.*
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYY.
+
+Move: Row Number: Column Number: Color: 
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+GGGGGGGG
+YYYYYYYY
+
+Termination: You have won!
+Score: 100%
+Moves: 64
+Game ended!

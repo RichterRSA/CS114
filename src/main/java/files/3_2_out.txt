@@ -1,0 +1,296 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGY.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYY.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYY.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGG.
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGGY
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGGY
+G.******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGGY
+GY.*****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGGY
+GYY.****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYGGYYG
+YGGYGYYG
+GYGYYGGY
+GYYY.***
+.*******
+.*******
+.*******
+.*******
+
+Termination: Blockade!
+Score: 44%
+Moves: 28
+Game ended!

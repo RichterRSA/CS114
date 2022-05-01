@@ -1,0 +1,336 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGY.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGY.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYG.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGY.****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYY.
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+G.******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GY.*****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYG.****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYGY.***
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYGYY.**
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYGYYG.*
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYGYYGG.
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+YGYYGGYG
+GYGGYYGY
+YGYGGYYG
+GYGYYGGG
+.*******
+.*******
+.*******
+.*******
+
+Termination: You have caused a dead end!
+Score: 50%
+Moves: 32
+Game ended!

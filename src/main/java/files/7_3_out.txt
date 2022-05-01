@@ -1,0 +1,626 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGG.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYY.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYG.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YG.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGY.****
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYG.**
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGY.
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+G.******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GY.*****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYG.****
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGY.***
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYY.**
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYG.*
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGG.
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+Y.******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YG.*****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGY.****
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYG.***
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGG.**
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGY.*
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYY.
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+G.******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GY.*****
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYY.****
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYG.***
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGG.**
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGY.*
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYG.
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+Y.******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YG.*****
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGG.****
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGY.***
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYY.**
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYG.*
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGY.
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+G.******
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GY.*****
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYY.****
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYG.***
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGY.**
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYG.*
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGG.
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+.*******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+Y.******
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+YY.*****
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+YYG.****
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+YYGG.***
+
+Move: Row Number: Column Number: Color: 
+GYGGYYGY
+YGYYGGYG
+GYGYYGGY
+YGYGGYYG
+GYYGGYGY
+YGGYYGYG
+GYYGYGGY
+YYGGG.**
+
+Move: Termination: User terminated game!
+Score: 95%
+Moves: 61
+Game ended!

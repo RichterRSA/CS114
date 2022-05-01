@@ -1,0 +1,29 @@
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Row Number: Column Number: Color: Invalid move: Unknown color!
+Move: Row Number: Column Number: Color: Invalid move: Unknown color!
+Move: Row Number: Column Number: Color: Invalid move: Unknown color!
+Move: Row Number: Column Number: Color: 
+Y.******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Termination: User terminated game!
+Score: 2%
+Moves: 1
+Game ended!

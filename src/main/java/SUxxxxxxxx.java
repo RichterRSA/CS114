@@ -17,7 +17,7 @@ public class SUxxxxxxxx {
     public static void main(String[] args) {
         //get game mode (0=first hand in, 1=second, 2=automatic solver)
         
-        int mode = 0, gui = 1, n = 2, k = 3;
+        int mode = 0, gui = 0, n = 2, k = 3;
         
         //validate argument amount
         if(args.length<4){ // too short
@@ -29,23 +29,35 @@ public class SUxxxxxxxx {
             return;
         }
         else{ // correct amount, get vars mode, gui, n and k from args
-            if (isInt(args[0]))
+            if (isInt(args[0]) && "012".contains(args[0]))
                 mode = Integer.parseInt(args[0]);
             else
                 StdOut.println("First input reset to default.");
             
-            if (isInt(args[1]))
+            if (isInt(args[1]) && "01".contains(args[1]))
                 gui = Integer.parseInt(args[1]);
             else
                 StdOut.println("Second input reset to default.");
             
-            if (isInt(args[2]))
+            if (isInt(args[2])){
                 n = Integer.parseInt(args[2]);
+                
+                if((clampInt(n, 2, 4)==n)==false){
+                    n = 2;
+                    StdOut.println("Third input reset to default.");
+                }
+            }
             else
                 StdOut.println("Third input reset to default.");
             
-            if (isInt(args[3]))
+            if (isInt(args[3])){
                 k = Integer.parseInt(args[3]);
+                
+                if((clampInt(k, 2, 4)==k)==false){
+                    k = 3;
+                    StdOut.println("Fourth input reset to default.");
+                }                
+            }
             else
                 StdOut.println("Fourth input reset to default.");
         }
@@ -55,8 +67,9 @@ public class SUxxxxxxxx {
         
         StdOut.println("The dimension of your board is: " + boardSize + "x" + boardSize);
         StdOut.println("The length of a blockade is: " + k);
+        StdOut.println();
         
-        int xPos = 0, yPos = 0;
+        int xPos = 0, yPos = 0, moveCount = 0;
         
         //Colors:
         //0 = white (inactive)
@@ -66,10 +79,6 @@ public class SUxxxxxxxx {
         
         double blockSize=1.0/boardSize;
         
-        if(gui==1){
-            StdDraw.enableDoubleBuffering();
-            StdDraw.clear(Color.BLACK);
-        }
        
         //set game board default values & drawing
         for (int y=0; y<boardSize; y++) {
@@ -77,6 +86,15 @@ public class SUxxxxxxxx {
                 //make first column active and everything else inactive
                 gameBoard[y][x] = (byte) ((x==0)?1:0); 
             }
+        }
+        
+        if(gui==1){
+            StdDraw.enableDoubleBuffering();
+            StdDraw.clear(Color.BLACK);
+        }
+        else{
+            DrawGameText(gameBoard, boardSize);
+            StdOut.println();
         }
         
         // Handle program arguments (with validation). Arguments can be referenced through the "args" parameter above.
@@ -104,11 +122,11 @@ public class SUxxxxxxxx {
                     int yPosNew = yPos;
 
                     switch (c) {
-                        case 'D' -> xPosNew++;
-                        case 'A' -> xPosNew--;
-                        case 'W' -> yPosNew--;
-                        case 'S' -> yPosNew++;
-                        case 'Q' -> gameIsRunning = false;
+                        case 'D': xPosNew++;
+                        case 'A': xPosNew--;
+                        case 'W': yPosNew--;
+                        case 'S': yPosNew++;
+                        case 'Q': gameIsRunning = false;
                     }
 
                     xPosNew = clampInt(xPosNew, 0, boardSize-1);
@@ -120,7 +138,6 @@ public class SUxxxxxxxx {
                     }
                 }
             } else {
-                DrawGameText(gameBoard, boardSize);
                 StdOut.print("Move: ");
                 String sMove = StdIn.readString();
                 
@@ -134,6 +151,7 @@ public class SUxxxxxxxx {
                 }
                 
                 if (iMove==2){
+                    StdOut.println("Termination: User terminated game!");
                     gameIsRunning=false;
                     continue;
                 }
@@ -199,12 +217,19 @@ public class SUxxxxxxxx {
                             gameBoard[iRow][iCol+1] = 1;
                 }
                 
+                moveCount++;
+                
+                StdOut.println();
+                DrawGameText(gameBoard, boardSize);
+                
                 StdOut.println(move_validator(k, gameBoard, false));
             }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
 
         // After the game is concluded, report the score by printing the state of the game to the terminal. 
+        StdOut.println("Score: " + getScore(gameBoard, boardSize) + "%");
+        StdOut.println("Moves: " + moveCount);
         StdOut.println("Game ended!");
     }
     
@@ -221,6 +246,20 @@ public class SUxxxxxxxx {
         return gameBoard;
     }
     
+    private static int getScore(byte[][] gameBoard, int boardSize){
+        int x, y, c = 0;
+        
+        for(y = 0; y<boardSize; y++){
+            for(x = 0; x<boardSize; x++){
+                if(gameBoard[y][x]>=2)
+                    c++;
+            }
+        }
+        
+        return (int)Math.round(((float)c/(boardSize*boardSize))*100);
+     
+    }
+    
     private static boolean isGameRowEmpty(byte[][] gameBoard, int boardSize, int row){
         for(int i = 0; i<boardSize; i++){
             if (gameBoard[row][i]>1)
@@ -235,7 +274,7 @@ public class SUxxxxxxxx {
             Integer.parseInt(arg);
             return  true;
         }
-        catch(Exception e){
+        catch(NumberFormatException e){
             return false;
         }
     }
@@ -251,28 +290,26 @@ public class SUxxxxxxxx {
     }
     
     private static boolean canMove(byte[][] gameBoard, int xPos, int yPos){
-        if (gameBoard[yPos][xPos] > 0)
-            return true;
-        return false;
+        return gameBoard[yPos][xPos] > 0;
     }
     
     private static char getTileChar(byte number){
-        return switch (number) {
-            case 0 -> '*';
-            case 1 -> '.';
-            case 2 -> 'G';
-            case 3 -> 'Y';
-            case 4 -> 'R';
-            case 5 -> 'B';
-            default -> '*';
-        };
+        switch (number) {
+            case 0: return '*';
+            case 1: return '.';
+            case 2: return 'G';
+            case 3: return 'Y';
+            case 4: return 'R';
+            case 5: return 'B';
+            default: return '*';
+        }
     }
     
     private static Color getTileColor(byte number){
-        return switch (number) {
-            case 1 -> Color.GRAY;
-            default -> Color.WHITE;
-        };
+        switch (number) {
+            case 1: return Color.GRAY;
+            default: return Color.WHITE;
+        }
     }
     
     private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){        
@@ -503,7 +540,7 @@ public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] cu
         for (int i =0;i<=colours.length-1;i++){
             if (gameBoard[possible_positions[i][0]][possible_positions[i][1]]==0){
                 if ((colours[i] != 0)&(colours[i]!=1))
-                gameBoard[possible_positions[i][0]][possible_positions[i][1]] = colours[i]; 
+                    gameBoard[possible_positions[i][0]][possible_positions[i][1]] = colours[i]; 
                 valid_move = move_validator(3,gameBoard,true);
                 if (valid_move == "true"){
                     new_pos = possible_positions[i];

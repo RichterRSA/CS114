@@ -1,0 +1,17 @@
+Fourth input reset to default.
+The dimension of your board is: 8x8
+The length of a blockade is: 3
+
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+.*******
+
+Move: Termination: User terminated game!
+Score: 0%
+Moves: 0
+Game ended!
