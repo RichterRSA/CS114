@@ -99,32 +99,107 @@ public class SUxxxxxxxx {
                 
                             //Input
                 if(StdIn.hasNextLine()){
-                char c = Character.toUpperCase(StdIn.readChar());
-                int xPosNew = xPos;
-                int yPosNew = yPos;
-                
-                if (c=='D')
-                    xPosNew++;
-                else if (c=='A')
-                    xPosNew--;
-                else if (c=='W')
-                    yPosNew--;
-                else if (c=='S')
-                    yPosNew++;
-                else if (c=='Q')
-                    gameIsRunning = false;
-                
-                xPosNew = clampInt(xPosNew, 0, boardSize-1);
-                yPosNew = clampInt(yPosNew, 0, boardSize-1);
-                      
-                if (canMove(gameBoard, xPosNew, yPosNew)){
-                    xPos = xPosNew;
-                    yPos = yPosNew;
+                    char c = Character.toUpperCase(StdIn.readChar());
+                    int xPosNew = xPos;
+                    int yPosNew = yPos;
+
+                    switch (c) {
+                        case 'D' -> xPosNew++;
+                        case 'A' -> xPosNew--;
+                        case 'W' -> yPosNew--;
+                        case 'S' -> yPosNew++;
+                        case 'Q' -> gameIsRunning = false;
+                    }
+
+                    xPosNew = clampInt(xPosNew, 0, boardSize-1);
+                    yPosNew = clampInt(yPosNew, 0, boardSize-1);
+
+                    if (canMove(gameBoard, xPosNew, yPosNew)){
+                        xPos = xPosNew;
+                        yPos = yPosNew;
+                    }
                 }
-            }
-            }
-            else{
+            } else {
                 DrawGameText(gameBoard, boardSize);
+                StdOut.print("Move: ");
+                String sMove = StdIn.readString();
+                
+                if (isInt(sMove)==false)
+                    continue;
+                int iMove = Integer.parseInt(sMove);
+                
+                if((clampInt(iMove, 0, 2) == iMove)==false){
+                    StdOut.println("Invalid move: Unknown move!");
+                    continue;  
+                }
+                
+                if (iMove==2){
+                    gameIsRunning=false;
+                    continue;
+                }
+                
+                String sRow, sCol;
+                int iRow, iCol;
+                
+                //Get row to affect
+                StdOut.print("Row Number: ");
+                sRow = StdIn.readString();
+                //Is value a number?
+                if (isInt(sRow)==false)
+                    continue;
+                iRow = Integer.parseInt(sRow);
+
+                //Is value valid?
+                if((clampInt(iRow, 0, 7) == iRow)==false){
+                    StdOut.println("Invalid move: Outside of board!");
+                    continue;  
+                }
+
+                //get column to affect
+                StdOut.print("Column Number: ");
+                sCol = StdIn.readString();
+                //is value a number?
+                if (isInt(sCol)==false)
+                    continue;
+                iCol = Integer.parseInt(sCol);
+
+                //is value valid?
+                if((clampInt(iCol, 0, 7) == iCol)==false){
+                    StdOut.println("Invalid move: Outside of board!");
+                    continue;  
+                }
+                
+                if(iMove==0){//delete row          
+                    if (isGameRowEmpty(gameBoard, boardSize, iCol)){
+                        StdOut.println("Invalid move: Nothing to delete!");
+                        continue;  
+                    }
+
+                    gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
+                } else {//place block
+                    StdOut.print("Color: ");
+                    String sClr = StdIn.readString();
+                    if (isInt(sClr)==false)
+                        continue;
+                    byte iClr = Byte.parseByte(sClr);
+                    
+                    if((clampInt(iClr, 0, n)==iClr)==false){
+                        StdOut.println("Invalid move: Unknown color!");
+                        continue;
+                    }
+                    
+                    if(gameBoard[iRow][iCol]==0){
+                        StdOut.println("Invalid move: Cell is not open!");
+                        continue;
+                    }
+                    
+                    gameBoard[iRow][iCol] = (byte) (2 + iClr);
+                    if(iCol<boardSize)
+                        if(gameBoard[iRow][iCol+1]==0)
+                            gameBoard[iRow][iCol+1] = 1;
+                }
+                
+                StdOut.println(move_validator(k, gameBoard, gameIsRunning));
             }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
@@ -134,6 +209,26 @@ public class SUxxxxxxxx {
     }
     
     // For the second hand-in, you must use functions effectively wherever possible. Put these functions here.
+    
+    private static byte[][] deleteGameRow(byte[][] gameBoard, int boardSize, int row, int col){
+        for (int i = col; i<boardSize; i++){
+            gameBoard[row][i] = 0;
+            
+            if(i==0)
+                gameBoard[row][i]=1;
+        }
+        
+        return gameBoard;
+    }
+    
+    private static boolean isGameRowEmpty(byte[][] gameBoard, int boardSize, int row){
+        for(int i = 0; i<boardSize; i++){
+            if (gameBoard[row][i]>1)
+                return false;
+        }
+        
+        return true;
+    }
     
     private static boolean isInt(String arg){
         try{
@@ -161,13 +256,23 @@ public class SUxxxxxxxx {
         return false;
     }
     
+    private static char getTileChar(byte number){
+        return switch (number) {
+            case 0 -> '*';
+            case 1 -> '.';
+            case 2 -> 'G';
+            case 3 -> 'Y';
+            case 4 -> 'R';
+            case 5 -> 'B';
+            default -> '*';
+        };
+    }
+    
     private static Color getTileColor(byte number){
-        switch (number) {
-            case 1:
-                return Color.GRAY;
-            default:
-                return Color.WHITE;
-        }
+        return switch (number) {
+            case 1 -> Color.GRAY;
+            default -> Color.WHITE;
+        };
     }
     
     private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){        
@@ -186,10 +291,7 @@ public class SUxxxxxxxx {
             line = "";
             for (int x=0; x<boardSize; x++){                
                 byte b = gameBoard[y][x];
-                if (b==0) //Closed
-                    line += '*';
-                else if (b==1) //Open
-                    line += '.';
+                line+=getTileChar(b);
             }
             StdOut.println(line);
         }
@@ -200,7 +302,7 @@ public class SUxxxxxxxx {
         StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2);
     }
     
-    public static boolean blockade_detect(int k,int[][] gameboard){
+    public static boolean blockade_detect(int k,byte[][] gameboard){
         int same_counter = 0;
         boolean blockade_detect = false;
 
@@ -231,7 +333,7 @@ public class SUxxxxxxxx {
                     //System.out.println(gameboard[x][i]+"to "+gameboard[x+1][i]);
                 if (gameboard[x][i] == gameboard[x+1][i]){
                     same_counter += 1;
-                    System.out.println("s"+same_counter);
+                    //System.out.println("s"+same_counter);
                     if (same_counter ==k){
                         blockade_detect = true;
                         break;
@@ -248,7 +350,7 @@ public class SUxxxxxxxx {
     }
 
 
-public static boolean dead_end_detect(int[][] gameboard){
+public static boolean dead_end_detect(byte[][] gameboard){
     String brace_pattern = "";
     int brace_start = 0;
     int same_counter =0;
@@ -261,7 +363,7 @@ public static boolean dead_end_detect(int[][] gameboard){
     
     //Loop through rows
     for(int i = 0;i <= gameboard[0].length-1;i++){
-        System.out.println("i" +i);
+        //System.out.println("i" +i);
         brace_start = gameboard[0][i];
         brace_pattern = Integer.toString(brace_start);
         //Loop through all columns for each row
@@ -270,7 +372,7 @@ public static boolean dead_end_detect(int[][] gameboard){
             brace_start = gameboard[x][i];
             if ((gameboard[x][i] == brace_start)&(x>0)&(brace_pattern.length()>=3)){   
                 
-                System.out.println("Brace:"+brace_pattern);
+                //System.out.println("Brace:"+brace_pattern);
                 
                     for (int z = x;z<=gameboard.length-1;z++){
                        
@@ -313,7 +415,7 @@ return brace_found;
 }
 
 
-public static boolean split_detect(int[][] gameboard){
+public static boolean split_detect(byte[][] gameboard){
     
     boolean split_found = true;
     // loop through rows of gameboard
@@ -325,17 +427,17 @@ public static boolean split_detect(int[][] gameboard){
         for(int x =0;x<=gameboard.length-1;x++){
             //if to make sure that indexes out of array range are not referenced in code below
             if(i+1<=gameboard[0].length-1){
-                System.out.println(gameboard[x][i]+"to "+gameboard[x][i+1]);
+                //System.out.println(gameboard[x][i]+"to "+gameboard[x][i+1]);
             //if condition to disqualify a row as a split
             if (gameboard[x][i]!= gameboard[x][i+1]){
             split_found = false;
-                System.out.println("false");
+                //System.out.println("false");
             break;}}}   
     }
     return split_found;
 }
 
-public static String move_validator(int k,int[][] gameboard, boolean self_solver){
+public static String move_validator(int k, byte[][] gameboard, boolean self_solver){
  boolean blockade = false;
  boolean dead_end = false;
  boolean split = false;
@@ -376,7 +478,7 @@ return "false";}
 }
 
 
-public static int[] self_solver(int[][] gameBoard, boolean termination,int[] currentPos,int[] colours,int k,boolean play){
+public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] currentPos, byte[] colours,int k,boolean play){
 //    int[] pos1 = {currentPos[0],currentPos[1]-1};
 //    int[] pos2 = {currentPos[0],currentPos[1]+1};
 //    int[] pos3 = {currentPos[0]-1,currentPos[1]};
