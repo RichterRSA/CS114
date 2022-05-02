@@ -42,7 +42,7 @@ public class SUxxxxxxxx {
             if (isInt(args[2])){
                 n = Integer.parseInt(args[2]);
                 
-                if((clampInt(n, 2, 4)==n)==false){
+                if((clampInt(n, 2, 4)!=n)){
                     n = 2;
                     StdOut.println("Third input reset to default.");
                 }
@@ -53,7 +53,7 @@ public class SUxxxxxxxx {
             if (isInt(args[3])){
                 k = Integer.parseInt(args[3]);
                 
-                if((clampInt(k, 2, 4)==k)==false){
+                if((clampInt(k, 2, 4)!=k)){
                     k = 3;
                     StdOut.println("Fourth input reset to default.");
                 }                
@@ -138,14 +138,14 @@ public class SUxxxxxxxx {
                     }
                 }
             } else {
-                StdOut.print("Move: ");
+                StdOut.print("Move: ");                
                 String sMove = StdIn.readString();
                 
-                if (isInt(sMove)==false)
+                if (!isInt(sMove))
                     continue;
                 int iMove = Integer.parseInt(sMove);
                 
-                if((clampInt(iMove, 0, 2) == iMove)==false){
+                if((clampInt(iMove, 0, 2) != iMove)){
                     StdOut.println("Invalid move: Unknown move!");
                     continue;  
                 }
@@ -163,50 +163,51 @@ public class SUxxxxxxxx {
                 StdOut.print("Row Number: ");
                 sRow = StdIn.readString();
                 //Is value a number?
-                if (isInt(sRow)==false)
+                if (!isInt(sRow))
                     continue;
                 iRow = Integer.parseInt(sRow);
-
-                //Is value valid?
-                if((clampInt(iRow, 0, 7) == iRow)==false){
-                    StdOut.println("Invalid move: Outside of board!");
-                    continue;  
-                }
 
                 //get column to affect
                 StdOut.print("Column Number: ");
                 sCol = StdIn.readString();
                 //is value a number?
-                if (isInt(sCol)==false)
+                if (!isInt(sCol))
                     continue;
                 iCol = Integer.parseInt(sCol);
-
-                //is value valid?
-                if((clampInt(iCol, 0, 7) == iCol)==false){
-                    StdOut.println("Invalid move: Outside of board!");
-                    continue;  
-                }
                 
                 if(iMove==0){//delete row          
                     if (isGameRowEmpty(gameBoard, boardSize, iCol)){
                         StdOut.println("Invalid move: Nothing to delete!");
                         continue;  
                     }
+                    
+                    //is value valid?
+                    if((clampInt(iCol, 0, 7) != iCol) || (clampInt(iRow, 0, 7) != iRow)){
+                        StdOut.println("Invalid move: Outside of board!");
+                        continue;  
+                    }
 
                     gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
+                    
                 } else {//place block
                     StdOut.print("Color: ");
                     String sClr = StdIn.readString();
-                    if (isInt(sClr)==false)
+                    if (!isInt(sClr))
                         continue;
                     byte iClr = Byte.parseByte(sClr);
                     
-                    if((clampInt(iClr, 0, n)==iClr)==false){
+                                    //is value valid?
+                    if((clampInt(iCol, 0, 7) != iCol) || (clampInt(iRow, 0, 7) != iRow)){
+                        StdOut.println("Invalid move: Outside of board!");
+                        continue;  
+                    }
+                    
+                    if((clampInt(iClr, 0, n-1)!=iClr)){
                         StdOut.println("Invalid move: Unknown color!");
                         continue;
                     }
                     
-                    if(gameBoard[iRow][iCol]==0){
+                    if(gameBoard[iRow][iCol]!=1){
                         StdOut.println("Invalid move: Cell is not open!");
                         continue;
                     }
@@ -420,12 +421,12 @@ public static boolean dead_end_detect(byte[][] gameboard){
             brace_start = gameboard[x][i];
             if ((gameboard[x][i] == brace_start)&(x>0)&(brace_pattern.length()>=3)){   
                 
-                System.out.println("Brace:"+brace_pattern);
+                //System.out.println("Brace:"+brace_pattern);
                 
                     for (int z = x;z<=gameboard.length-1;z++){
                        
                         brace_pattern_current =brace_pattern.charAt(q)+"";
-                        System.out.println(brace_pattern_current+"to "+gameboard[z][i]);
+                        //System.out.println(brace_pattern_current+"to "+gameboard[z][i]);
                         if (Integer.parseInt(brace_pattern_current) == gameboard[z][i]){
                             if ((gameboard[z][i]!=brace_start)&(q>0)&(q<brace_pattern.length())){
                                 bool_inside_different = true;}
