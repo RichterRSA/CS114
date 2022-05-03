@@ -392,9 +392,6 @@ public class SUxxxxxxxx {
            
 
            }
-        
-        
-     
         same_counter = 0;
         for (int i = 0; i <= gameboard[0].length-1;i++){
             //System.out.println(i);
@@ -432,7 +429,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
     int brace_start = 0;
     int same_counter =0;
     int q = 0;
-    boolean brace_found = false;
+    boolean dead_end_found = false;
     boolean start_bool = true;
     String brace_pattern_current = "";
     boolean bool_inside_different = false;
@@ -443,18 +440,15 @@ public static boolean dead_end_detect(byte[][] gameboard){
         //System.out.println("i" +i);
         brace_start = gameboard[i][0];
         brace_pattern = Integer.toString(brace_start);
+        
         //Loop through all columns for each row
         for(int x = 0;x <= gameboard[i].length-1;x++){
-            
-            //brace_start = gameboard[i][x];
-            //System.out.println(brace_start+"to: "+gameboard[i][x]);
+            //Test if the user input qualifies as a brace
             if ((gameboard[i][x] == brace_start)&(x>0)&(brace_pattern.length()>=3)&(gameboard[i][x]>=2)&(bool_inside_different)){   
                 q = 0;
-                
-                //System.out.println("Brace:"+brace_pattern);
-                
+                    //Loop to compare new input to a brace pattern to see if a dead end is present
                     for (int z = x;z<=gameboard.length-1;z++){
-                        //System.out.println("z: "+z);
+
                         
                         brace_pattern_current =brace_pattern.charAt(q)+"";
                         System.out.println(brace_pattern_current+"to "+gameboard[i][z]);
@@ -470,24 +464,22 @@ public static boolean dead_end_detect(byte[][] gameboard){
                         
                         if (q==brace_pattern.length()){
                             break;}
-                    if (z==brace_pattern.length()-1){break;}}
-//                        q = 0;
-                        
+                    }
+                    //Set the variable dead_end_found to true if a dead end is found
                     if ((same_counter==brace_pattern.length())){
-                           brace_found = true;
+                           dead_end_found = true;
                            same_counter=0;
                            bool_inside_different = false;
                             break;}
-                    
+                  
             }  
         else{
             if ((start_bool == false)){
             brace_pattern = brace_pattern + Integer.toString(gameboard[i][x]);
-               // System.out.println("BraceP: "+brace_pattern);
             }
             start_bool = false;
             }
-        if (brace_found){
+        if (dead_end_found){
         break;}
         if ((gameboard[i][x]!=brace_start)&(x>0)){
         bool_inside_different=true;}
@@ -498,7 +490,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
         
     }
 
-return brace_found;
+return dead_end_found;
 }
 
 
@@ -514,11 +506,9 @@ public static boolean split_detect(byte[][] gameboard){
         for(int x =0;x<=gameboard.length-1;x++){
             //if to make sure that indexes out of array range are not referenced in code below
             if(i+1<=gameboard[0].length-1){
-                //System.out.println(gameboard[x][i]+"to "+gameboard[x][i+1]);
             //if condition to disqualify a row as a split
             if (gameboard[x][i]!= gameboard[x][i+1]){
             split_found = false;
-                //System.out.println("false");
             break;}}}   
     }
     return split_found;
