@@ -16,7 +16,7 @@ public class SUxxxxxxxx {
     // For the first hand-in, it is possible and highly recommended to code the entire program within the main function.
     public static void main(String[] args) {
         //get game mode (0=first hand in, 1=second, 2=automatic solver)
-        
+        //change
         int mode = 0, gui = 0, n = 2, k = 3;
         int boardSize;
         
