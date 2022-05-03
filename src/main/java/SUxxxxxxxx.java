@@ -18,6 +18,7 @@ public class SUxxxxxxxx {
         //get game mode (0=first hand in, 1=second, 2=automatic solver)
         
         int mode = 0, gui = 0, n = 2, k = 3;
+        int boardSize;
         
         //validate argument amount
         if(args.length<4){ // too short
@@ -50,10 +51,12 @@ public class SUxxxxxxxx {
             else
                 StdOut.println("Third input reset to default.");
             
+            boardSize = (int)(58*Math.pow(n-1, 3) - 310*Math.pow(n-1, 2) + 546*(n-1) - 286);//formula for game size 
+            
             if (isInt(args[3])){
                 k = Integer.parseInt(args[3]);
                 
-                if((clampInt(k, 2, 4)!=k)){
+                if((clampInt(k, 3, boardSize)!=k)){
                     k = 3;
                     StdOut.println("Fourth input reset to default.");
                 }                
@@ -61,10 +64,7 @@ public class SUxxxxxxxx {
             else
                 StdOut.println("Fourth input reset to default.");
         }
-        
-        //game board setup
-        int boardSize = (int)(58*Math.pow(n-1, 3) - 310*Math.pow(n-1, 2) + 546*(n-1) - 286);//formula for game size 
-        
+                
         StdOut.println("The dimension of your board is: " + boardSize + "x" + boardSize);
         StdOut.println("The length of a blockade is: " + k);
         StdOut.println();
@@ -138,8 +138,21 @@ public class SUxxxxxxxx {
                     }
                 }
             } else {
-                StdOut.print("Move: ");                
-                String sMove = StdIn.readString();
+                
+                if(!StdIn.isEmpty())
+                    StdOut.print("Move: ");                
+                
+                String sMove = "";
+                
+                try {
+                    sMove = StdIn.readString();
+                }
+                catch(Exception e){
+                    if(getScore(gameBoard, boardSize)==100){
+                        StdOut.println("Termination: You have won!");
+                    }
+                    gameIsRunning = false;
+                }
                 
                 if (!isInt(sMove))
                     continue;
@@ -182,7 +195,7 @@ public class SUxxxxxxxx {
                     }
                     
                     //is value valid?
-                    if((clampInt(iCol, 0, 7) != iCol) || (clampInt(iRow, 0, 7) != iRow)){
+                    if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
                         StdOut.println("Invalid move: Outside of board!");
                         continue;  
                     }
@@ -197,7 +210,7 @@ public class SUxxxxxxxx {
                     byte iClr = Byte.parseByte(sClr);
                     
                                     //is value valid?
-                    if((clampInt(iCol, 0, 7) != iCol) || (clampInt(iRow, 0, 7) != iRow)){
+                    if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
                         StdOut.println("Invalid move: Outside of board!");
                         continue;  
                     }
@@ -457,7 +470,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
                         //System.out.println("z: "+z);
                         
                         brace_pattern_current =brace_pattern.charAt(q)+"";
-                        System.out.println(brace_pattern_current+"to "+gameboard[i][z]);
+                        //System.out.println(brace_pattern_current+"to "+gameboard[i][z]);
                         if (Integer.parseInt(brace_pattern_current) == gameboard[i][z]){
 
                         same_counter += 1; 
