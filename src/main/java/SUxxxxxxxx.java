@@ -213,7 +213,7 @@ public class SUxxxxxxxx {
                     }
                     
                     gameBoard[iRow][iCol] = (byte) (2 + iClr);
-                    if(iCol<boardSize)
+                    if(iCol<boardSize-1)
                         if(gameBoard[iRow][iCol+1]==0)
                             gameBoard[iRow][iCol+1] = 1;
                 }
@@ -222,8 +222,28 @@ public class SUxxxxxxxx {
                 
                 StdOut.println();
                 DrawGameText(gameBoard, boardSize);
+                StdOut.println();
                 
-                StdOut.println(move_validator(k, gameBoard, false));
+                int errorCode = move_validator_new(k, gameBoard, false);
+                
+                switch (errorCode) {
+                    case 1: 
+                        StdOut.println("Termination: Blockade!");
+                        gameIsRunning=false;
+                        break;
+                    case 2: 
+                        StdOut.println("Termination: Dead end!");
+                        gameIsRunning=false;
+                        break;
+                    case 3: 
+                        StdOut.println("Termination: Split!");
+                        gameIsRunning=false;
+                        break;
+                    case 4:
+                        StdOut.println("Termination: You have won!");
+                        gameIsRunning = false;
+                        break;
+                }
             }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
@@ -352,18 +372,22 @@ public class SUxxxxxxxx {
              
             for (int x = 0; x <= gameboard[i].length-1;x++){
                 //System.out.println(gameboard[i][x]);
-                 
+                
+                if (gameboard[i][x]<2){
+                    same_counter=0;
+                    continue;
+                } 
+                
                 if (x +1<= gameboard[i].length-1){
                     //System.out.println(gameboard[i][x]);
                 if ((gameboard[i][x] == gameboard[i][x+1])&(gameboard[i][x]>=2)){
                     same_counter += 1;
                 if (same_counter ==k-1){
                     blockade_detect = true;
-                    System.out.println("error at the vertical");
                     break;}}
                 else{
                 same_counter=0;}
-            }
+                }
             }
            
 
@@ -376,13 +400,17 @@ public class SUxxxxxxxx {
             //System.out.println(i);
             for (int x = 0; x <= gameboard.length-1;x++){
                 
+                if (gameboard[x][i]<2){
+                    same_counter=0;
+                    continue;
+                } 
+                
                 if (x +1 <= gameboard.length-1){
                     //System.out.println(gameboard[x][i]+"to "+gameboard[x+1][i]);
                 if ((gameboard[x][i] == gameboard[x+1][i])&(gameboard[x][i]>=2)){
                     same_counter += 1;
                     //System.out.println("s"+same_counter);
                     if (same_counter ==k-1){
-                        System.out.println("error at the horisontal");
                         blockade_detect = true;
                         break; 
                 }
@@ -524,6 +552,25 @@ else if ((self_solver)&(termination)){
     return "true";}
 else{
 return "false";}
+}
+
+public static int move_validator_new(int k, byte[][] gameboard, boolean self_solver){
+    boolean blockade = false;
+    boolean dead_end = false;
+    boolean split = false;
+    int error_code = 0;
+    blockade = blockade_detect(k,gameboard);
+    dead_end = dead_end_detect(gameboard);
+    split = split_detect(gameboard);
+
+    if (blockade)
+       error_code = 1;
+    else if (dead_end)
+       error_code = 2;
+    else if (split)
+       error_code = 3;
+ 
+    return error_code;
 }
 
 
