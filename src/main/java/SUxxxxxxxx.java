@@ -447,27 +447,34 @@ public static boolean dead_end_detect(byte[][] gameboard){
         for(int x = 0;x <= gameboard[i].length-1;x++){
             
             //brace_start = gameboard[i][x];
-            System.out.println(brace_start+"to: "+gameboard[i][x]);
+            //System.out.println(brace_start+"to: "+gameboard[i][x]);
             if ((gameboard[i][x] == brace_start)&(x>0)&(brace_pattern.length()>=3)&(gameboard[i][x]>=2)&(bool_inside_different)){   
+                q = 0;
                 
                 //System.out.println("Brace:"+brace_pattern);
                 
                     for (int z = x;z<=gameboard.length-1;z++){
                         //System.out.println("z: "+z);
+                        System.out.println(brace_pattern.length()+" "+gameboard.length);
+                        
                         brace_pattern_current =brace_pattern.charAt(q)+"";
-                        //System.out.println(brace_pattern_current+"to "+gameboard[z][i]);
-                        if (Integer.parseInt(brace_pattern_current) == gameboard[z][i]){
-                            if ((gameboard[z][i]!=brace_start)&(q>0)&(q<brace_pattern.length())){
-                                bool_inside_different = true;}
-                            same_counter +=1;}
+                        System.out.println(brace_pattern_current+"to "+gameboard[i][z]);
+                        if (Integer.parseInt(brace_pattern_current) == gameboard[i][z]){
+//                            if ((gameboard[z][i]!=brace_start)&(q>0)&(q<brace_pattern.length())){
+//                                bool_inside_different = true;}
+//                            same_counter +=1;}
+                        same_counter += 1; 
+                        q +=1;}
                         
                         else{
-                        same_counter = 0;}
-                        q+=1;
+                        same_counter = 0;
+                        q+=1;}
                         
-                        if (q==brace_pattern.length()){
-                            break;}}
-                        q = 0;
+                        
+                        if (q==brace_pattern.length()-1){
+                            break;}
+                    if (z==brace_pattern.length()-1){break;}}
+//                        q = 0;
                         
                     if ((same_counter==brace_pattern.length())){
                            brace_found = true;
