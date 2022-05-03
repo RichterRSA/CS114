@@ -1,14 +1,14 @@
 
 import java.awt.Color;
-
-// Notes on using this skeleton:
-// - The names of variables and functions (both those given in the skeleton and those made by yourself) are up to you, as long as they are sensible.
-// - You should document your code well with comments and (as stated above) sensible & logical names.
-// - You are free to delete the comments typed in this skeleton.
-// - Remember to follow the code specifications given in the project description.
-
-
-// Replace "xxxxxxxx" below with your student number.  Remember to rename this file accordingly.
+//
+//// Notes on using this skeleton:
+//// - The names of variables and functions (both those given in the skeleton and those made by yourself) are up to you, as long as they are sensible.
+//// - You should document your code well with comments and (as stated above) sensible & logical names.
+//// - You are free to delete the comments typed in this skeleton.
+//// - Remember to follow the code specifications given in the project description.
+//
+//
+//// Replace "xxxxxxxx" below with your student number.  Remember to rename this file accordingly.
 public class SUxxxxxxxx {
 
     // No global variables or constants allowed.
@@ -373,7 +373,7 @@ public class SUxxxxxxxx {
         StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2);
     }
     
-    public static boolean blockade_detect(int k,byte[][] gameboard){
+ public static boolean blockade_detect(int k,byte[][] gameboard){
         int same_counter = 0;
         boolean blockade_detect = false;
 
@@ -405,9 +405,6 @@ public class SUxxxxxxxx {
            
 
            }
-        
-        
-     
         same_counter = 0;
         for (int i = 0; i <= gameboard[0].length-1;i++){
             //System.out.println(i);
@@ -445,10 +442,11 @@ public static boolean dead_end_detect(byte[][] gameboard){
     int brace_start = 0;
     int same_counter =0;
     int q = 0;
-    boolean brace_found = false;
+    boolean dead_end_found = false;
     boolean start_bool = true;
     String brace_pattern_current = "";
     boolean bool_inside_different = false;
+    StdOut.println("hiiiiiii");
     
     
     //Loop through rows
@@ -456,21 +454,17 @@ public static boolean dead_end_detect(byte[][] gameboard){
         //System.out.println("i" +i);
         brace_start = gameboard[i][0];
         brace_pattern = Integer.toString(brace_start);
+        
         //Loop through all columns for each row
         for(int x = 0;x <= gameboard[i].length-1;x++){
-            
-            //brace_start = gameboard[i][x];
-            //System.out.println(brace_start+"to: "+gameboard[i][x]);
+            //Test if the user input qualifies as a brace
             if ((gameboard[i][x] == brace_start)&(x>0)&(brace_pattern.length()>=3)&(gameboard[i][x]>=2)&(bool_inside_different)){   
                 q = 0;
-                
-                //System.out.println("Brace:"+brace_pattern);
-                
+                    //Loop to compare new input to a brace pattern to see if a dead end is present
                     for (int z = x;z<=gameboard.length-1;z++){
-                        //System.out.println("z: "+z);
+
                         
                         brace_pattern_current =brace_pattern.charAt(q)+"";
-                        //System.out.println(brace_pattern_current+"to "+gameboard[i][z]);
                         if (Integer.parseInt(brace_pattern_current) == gameboard[i][z]){
 
                         same_counter += 1; 
@@ -483,24 +477,23 @@ public static boolean dead_end_detect(byte[][] gameboard){
                         
                         if (q==brace_pattern.length()){
                             break;}
-                    if (z==brace_pattern.length()-1){break;}}
-//                        q = 0;
-                        
+                    }
+                    //Set the variable dead_end_found to true if a dead end is found
                     if ((same_counter==brace_pattern.length())){
-                           brace_found = true;
+                            StdOut.println("hiiiii");
+                           dead_end_found = true;
                            same_counter=0;
                            bool_inside_different = false;
                             break;}
-                    
+                  
             }  
         else{
             if ((start_bool == false)){
             brace_pattern = brace_pattern + Integer.toString(gameboard[i][x]);
-               // System.out.println("BraceP: "+brace_pattern);
             }
             start_bool = false;
             }
-        if (brace_found){
+        if (dead_end_found){
         break;}
         if ((gameboard[i][x]!=brace_start)&(x>0)){
         bool_inside_different=true;}
@@ -511,7 +504,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
         
     }
 
-return brace_found;
+return dead_end_found;
 }
 
 
@@ -587,6 +580,7 @@ public static int move_validator_new(int k, byte[][] gameboard, boolean self_sol
     split = split_detect(gameboard);
 
     if (blockade)
+        System.out.println("hiiiiiiiiii");
        error_code = 1;
     else if (dead_end)
        error_code = 2;
@@ -598,10 +592,10 @@ public static int move_validator_new(int k, byte[][] gameboard, boolean self_sol
 
 
 public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] currentPos, byte[] colours,int k,boolean play){
-//    int[] pos1 = {currentPos[0],currentPos[1]-1};
-//    int[] pos2 = {currentPos[0],currentPos[1]+1};
-//    int[] pos3 = {currentPos[0]-1,currentPos[1]};
-//    int[] pos4 = {currentPos[0]+1,currentPos[1]};
+////    int[] pos1 = {currentPos[0],currentPos[1]-1};
+////    int[] pos2 = {currentPos[0],currentPos[1]+1};
+////    int[] pos3 = {currentPos[0]-1,currentPos[1]};
+////    int[] pos4 = {currentPos[0]+1,currentPos[1]};
     int[][] possible_positions = {{currentPos[0],currentPos[1]-1},{currentPos[0],currentPos[1]+1},{currentPos[0]-1,currentPos[1]},{currentPos[0]+1,currentPos[1]}};
     int[] new_pos = {-1,-1};//{-1,-1} will be recognized as a error code from the method that called. This error code will signal that there is no further moves to be made.
     String valid_move = "";
@@ -648,5 +642,4 @@ public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] cu
 
 
 }
-        
 
