@@ -139,10 +139,12 @@ public class SUxxxxxxxx {
                 }
             } else {
                 
-                if(!StdIn.isEmpty())
-                    StdOut.print("Move: ");                
+                StdOut.print("Move: ");                
                 
                 String sMove = "";
+                
+                if(StdIn.isEmpty())
+                    return;
                 
                 try {
                     sMove = StdIn.readString();
@@ -189,7 +191,7 @@ public class SUxxxxxxxx {
                 iCol = Integer.parseInt(sCol);
                 
                 if(iMove==0){//delete row          
-                    if (isGameRowEmpty(gameBoard, boardSize, iCol)){
+                    if (isGameRowEmpty(gameBoard, boardSize, iRow)){
                         StdOut.println("Invalid move: Nothing to delete!");
                         continue;  
                     }
@@ -273,7 +275,7 @@ public class SUxxxxxxxx {
         for (int i = col; i<boardSize; i++){
             gameBoard[row][i] = 0;
             
-            if(i==0)
+            if(i==0 || i==col)
                 gameBoard[row][i]=1;
         }
         
@@ -446,7 +448,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
     boolean start_bool = true;
     String brace_pattern_current = "";
     boolean bool_inside_different = false;
-    StdOut.println("hiiiiiii");
+    //StdOut.println("hiiiiiii");
     
     
     //Loop through rows
@@ -579,9 +581,10 @@ public static int move_validator_new(int k, byte[][] gameboard, boolean self_sol
     dead_end = dead_end_detect(gameboard);
     split = split_detect(gameboard);
 
-    if (blockade)
+    if (blockade){
         System.out.println("hiiiiiiiiii");
        error_code = 1;
+    }
     else if (dead_end)
        error_code = 2;
     else if (split)
