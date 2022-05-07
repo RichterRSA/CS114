@@ -139,6 +139,11 @@ public class SUxxxxxxxx {
                 }
             } else {
                 
+                if(getScoreAccurate(gameBoard, boardSize)==100){
+                    StdOut.println("Termination: You have won!");
+                    break;
+                }
+                
                 StdOut.print("Move: ");                
                 
                 String sMove = "";
@@ -150,9 +155,6 @@ public class SUxxxxxxxx {
                     sMove = StdIn.readString();
                 }
                 catch(Exception e){
-                    if(getScore(gameBoard, boardSize)==100){
-                        StdOut.println("Termination: You have won!");
-                    }
                     gameIsRunning = false;
                 }
                 
@@ -287,13 +289,25 @@ public class SUxxxxxxxx {
         
         for(y = 0; y<boardSize; y++){
             for(x = 0; x<boardSize; x++){
-                if(gameBoard[y][x]>=2)
+                if(gameBoard[y][x]>1)
                     c++;
             }
         }
         
         return (int)Math.round(((float)c/(boardSize*boardSize))*100);
-     
+    }
+    
+    private static float getScoreAccurate(byte[][] gameBoard, int boardSize){
+        int x, y, c = 0;
+        
+        for(y = 0; y<boardSize; y++){
+            for(x = 0; x<boardSize; x++){
+                if(gameBoard[y][x]>1)
+                    c++;
+            }
+        }
+        
+        return ((float)c/(boardSize*boardSize))*100;
     }
     
     private static boolean isGameRowEmpty(byte[][] gameBoard, int boardSize, int row){
@@ -377,10 +391,7 @@ public class SUxxxxxxxx {
     
  public static boolean blockade_detect(int k,byte[][] gameboard){
         int same_counter = 0;
-        boolean blockade_detect = false;
-
-        
-        
+        boolean blockade_detect = false;        
         
         for(int i = 0; i <= gameboard.length-1;i++){
             //System.out.println(i);
@@ -397,7 +408,7 @@ public class SUxxxxxxxx {
                     //System.out.println(gameboard[i][x]);
                 if ((gameboard[i][x] == gameboard[i][x+1])&(gameboard[i][x]>=2)){
                     same_counter += 1;
-                if (same_counter ==k-1){
+                if (same_counter>=k){
                     blockade_detect = true;
                     break;}}
                 else{
@@ -482,7 +493,7 @@ public static boolean dead_end_detect(byte[][] gameboard){
                     }
                     //Set the variable dead_end_found to true if a dead end is found
                     if ((same_counter==brace_pattern.length())){
-                            StdOut.println("hiiiii");
+                            //StdOut.println("hiiiii:");
                            dead_end_found = true;
                            same_counter=0;
                            bool_inside_different = false;
@@ -509,6 +520,66 @@ public static boolean dead_end_detect(byte[][] gameboard){
 return dead_end_found;
 }
 
+private static boolean deadEndNew(byte[][] gameBoard){
+    String pattern = "", line = "";
+    int startNum=-1, secondNum=-1;
+    int boardSize = gameBoard.length;
+    
+    for(int y = 0; y<boardSize; y++){
+        pattern = "";
+        line = "";
+        
+        for(int x = 0; x<boardSize; x++)
+            line += gameBoard[y][x];
+        
+        for(int x = 0; x<boardSize; x++){
+            startNum = gameBoard[y][x];
+            pattern += gameBoard[y][x];
+            
+            secondNum = -1;
+            
+            boolean validPatternFound = false;
+            for(int z = x+1; z<boardSize; z++){
+                pattern += gameBoard[y][z];
+                if(secondNum==-1){
+                    secondNum = gameBoard[y][z];
+                    if(secondNum==startNum)
+                        break;
+                }
+                else{
+                    if(gameBoard[y][z]!=startNum && gameBoard[y][z]!=secondNum){
+                        break;
+                    }
+                    else if(startNum==gameBoard[y][z]){
+                        validPatternFound = true;
+                        break;
+                    }
+                }
+            }
+            
+            if(validPatternFound){
+                //System.out.println(line + " : " + pattern);
+                int count = 0;
+                line = line.replace(pattern, "*");
+                
+                //System.out.println(line + "  (" + pattern + ")");
+                
+                for (int i = 0; i < line.length(); i++)
+                    if (line.charAt(i)=='*')
+                        count++;
+                
+                
+                if(count>1){
+                    System.out.println(pattern);
+                    return true;
+                }
+            }
+            
+        }
+    }
+    
+    return false;
+}
 
 public static boolean split_detect(byte[][] gameboard){
     
@@ -539,7 +610,7 @@ public static String move_validator(int k, byte[][] gameboard, boolean self_solv
  boolean termination = false;
  String error_message = "";
  blockade = blockade_detect(k,gameboard);
- dead_end = dead_end_detect(gameboard);
+ dead_end = deadEndNew(gameboard); //TODO
  split = split_detect(gameboard);
  if ((blockade)&(dead_end)&(split)){
      error_message = "Termination: You have caused a blockade, a dead end and split!";
@@ -578,11 +649,11 @@ public static int move_validator_new(int k, byte[][] gameboard, boolean self_sol
     boolean split = false;
     int error_code = 0;
     blockade = blockade_detect(k,gameboard);
-    dead_end = dead_end_detect(gameboard);
+    dead_end = deadEndNew(gameboard);
     split = split_detect(gameboard);
 
     if (blockade){
-        System.out.println("hiiiiiiiiii");
+        //System.out.println("hiiiiiiiiii");
        error_code = 1;
     }
     else if (dead_end)
