@@ -277,8 +277,8 @@ public class SUxxxxxxxx {
                         gameIsRunning = false;
                         break;    
                     case 0:
-                        if(isImpasse(gameBoard, n, k)){
-                            StdOut.println("Termination: Impasse!");
+                        if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1){
+                            StdOut.println("Termination: Impasse!" );
                             gameIsRunning = false;
                         }
                         break;
@@ -300,26 +300,39 @@ public class SUxxxxxxxx {
     private static boolean isImpasse(byte[][] gameBoard, int n, int k){
         int boardSize = gameBoard.length;
         
-        boolean movePossible = false;
+        boolean impasse = true;
         for (int y = 0; y<boardSize; y++){
             for (int x = 0; x<boardSize; x++){
+                
                 if (gameBoard[y][x]==1){
+                    
+                    if (x==0)
+                        return false;
                     
                     for (byte i = 2; i<n+2; i++){
                         gameBoard[y][x] = i;
+                        if (x<boardSize-1)
+                            gameBoard[y][x+1] = 0;
+                        
                         int result = move_validator_new(k, gameBoard, false);
-                        if (result==0)
-                        {
-                            movePossible = true;
-                            System.out.println("SUxxxxxxxx.isImpasse()");
+                        
+                        if (result==0){
+                            impasse = false;
+                            gameBoard[y][x] = 1;
+                            if (x<boardSize-1)
+                                gameBoard[y][x+1] = 0;
+                            
+                            return false;
                         }
                     }
                     
                     gameBoard[y][x] = 1;
+                    if (x<boardSize-1)
+                        gameBoard[y][x+1] = 0;
                 }
             }
         }
-        return !movePossible;
+        return impasse;
     }
     
     private static byte[][] deleteGameRow(byte[][] gameBoard, int boardSize, int row, int col){
@@ -357,6 +370,19 @@ public class SUxxxxxxxx {
         }
         
         return ((float)c/(boardSize*boardSize))*100;
+    }
+    
+    private static int getBlocksLeft(byte[][] gameBoard){
+        int x, y, c = 0;
+        
+        for(y = 0; y<gameBoard.length; y++){
+            for(x = 0; x<gameBoard.length; x++){
+                if(gameBoard[y][x]>1)
+                    c++;
+            }
+        }
+        
+        return gameBoard.length * gameBoard.length - c;
     }
     
     private static boolean isGameRowEmpty(byte[][] gameBoard, int boardSize, int row){
@@ -674,8 +700,10 @@ public class SUxxxxxxxx {
 
                 boolean diff = false;
                 for (int z = 0; z<boardSize; z++){
-                    if(gameBoard[y][z]==1)
-                        diff=false;
+                    if(gameBoard[y][z]<2){
+                        diff=true;
+                        break;
+                    }
                     else if (gameBoard[y][z]!=gameBoard[i][z])
                         diff = true;
                 }
@@ -754,7 +782,6 @@ public class SUxxxxxxxx {
 
         return error_code;
     }
-
 
     public static int[] self_solver(byte[][] gameBoard, boolean termination,int[] currentPos, byte[] colours,int k,boolean play){
     ////    int[] pos1 = {currentPos[0],currentPos[1]-1};
