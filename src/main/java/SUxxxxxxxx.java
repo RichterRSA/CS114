@@ -110,23 +110,34 @@ public class SUxxxxxxxx {
             //gameIsRunning = false;
             
             if(gui==1){
+                String gameStatusText = "";
                 StdDraw.clear(Color.BLACK);
                 DrawPosition(xPos, yPos, blockSize);
                 DrawGame(gameBoard, boardSize, blockSize);
+                StdDraw.setPenColor(Color.BLACK);
+                StdDraw.text(0.5, 0.01, gameStatusText);
                 StdDraw.show();
+               
                 
-                            //Input
+                //Input
                 if(StdIn.hasNextLine()){
                     char c = Character.toUpperCase(StdIn.readChar());
                     int xPosNew = xPos;
                     int yPosNew = yPos;
-
+                    
+                    boolean isNum = false;
+                    
                     switch (c) {
-                        case 'D': xPosNew++;
-                        case 'A': xPosNew--;
-                        case 'W': yPosNew--;
-                        case 'S': yPosNew++;
-                        case 'Q': gameIsRunning = false;
+                        case 'D' -> xPosNew++;
+                        case 'A' -> xPosNew--;
+                        case 'W' -> yPosNew--;
+                        case 'S' -> yPosNew++;
+                        case 'Q' -> gameIsRunning = false;
+                        case 'X' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+                        default -> {
+                                if(isInt(c+""))
+                                        isNum = true;
+                        }
                     }
 
                     xPosNew = clampInt(xPosNew, 0, boardSize-1);
@@ -136,6 +147,60 @@ public class SUxxxxxxxx {
                         xPos = xPosNew;
                         yPos = yPosNew;
                     }
+                    
+                    if (isNum){
+                        int num = Integer.parseInt(c+"");
+                        if (num == clampInt(num, 0, n-1) && gameBoard[yPos][xPos]==1){
+                            gameBoard[yPos][xPos] = (byte)(num + 2);
+                            if(xPos<gameBoard.length-1)
+                                gameBoard[yPos][xPos+1] = 1;
+                        }
+                    }              
+                    
+                    int errorCode = move_validator_new(k, gameBoard, false);
+                    
+                    switch (errorCode) {
+                        case 1: 
+                            gameStatusText = "Termination: You have caused a blockade!";
+                            gameIsRunning=false;
+                            break;
+                        case 2: 
+                            gameStatusText = "Termination: You have caused a dead end!";
+                            gameIsRunning=false;
+                            break;
+                        case 3: 
+                            gameStatusText = "Termination: You have caused a split!";
+                            gameIsRunning=false;
+                            break;
+                        case 4:
+                            gameStatusText = "Termination: You have won!";
+                            gameIsRunning = false;
+                            break;
+                        case 12:
+                            gameStatusText = "Termination: You have caused a blockade and a dead end!";
+                            gameIsRunning = false;
+                            break;
+                        case 13:
+                            gameStatusText = "Termination: You have caused a blockade and a split!";
+                            gameIsRunning = false;
+                            break;
+                        case 23:
+                            gameStatusText = "Termination: You have caused a dead end and a split!";
+                            gameIsRunning = false;
+                            break;
+                        case 123:
+                            gameStatusText = "Termination: You have caused a blockade, a dead end and split!";
+                            gameIsRunning = false;
+                            break;    
+                        case 0:
+                            if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1){
+                                gameStatusText = "Termination: Impasse!";
+                                gameIsRunning = false;
+                            }
+                            else
+                                gameStatusText = "Valid";
+                            break;
+                    }                    
                 }
             } else {
                 
@@ -433,6 +498,9 @@ public class SUxxxxxxxx {
     private static Color getTileColor(byte number){
         switch (number) {
             case 1: return Color.GRAY;
+            case 2 : return Color.GREEN;
+            case 3 : return Color.YELLOW;
+            case 4 : return Color.RED;
             default: return Color.WHITE;
         }
     }
