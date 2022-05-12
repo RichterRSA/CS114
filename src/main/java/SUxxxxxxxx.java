@@ -19,6 +19,7 @@ public class SUxxxxxxxx {
         //change
         int mode = 0, gui = 0, n = 2, k = 3;
         int boardSize;
+        String gameStatusText = "Valid";
         
         //validate argument amount
         if(args.length<4){ // too short
@@ -110,11 +111,10 @@ public class SUxxxxxxxx {
             //gameIsRunning = false;
             
             if(gui==1){
-                String gameStatusText = "";
                 StdDraw.clear(Color.BLACK);
                 DrawPosition(xPos, yPos, blockSize);
                 DrawGame(gameBoard, boardSize, blockSize);
-                StdDraw.setPenColor(Color.BLACK);
+                StdDraw.setPenColor(Color.RED);
                 StdDraw.text(0.5, 0.01, gameStatusText);
                 StdDraw.show();
                
@@ -135,8 +135,8 @@ public class SUxxxxxxxx {
                         case 'Q' -> gameIsRunning = false;
                         case 'X' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
                         default -> {
-                                if(isInt(c+""))
-                                        isNum = true;
+                            if(isInt(c+""))
+                                isNum = true;
                         }
                     }
 
@@ -160,46 +160,20 @@ public class SUxxxxxxxx {
                     int errorCode = move_validator_new(k, gameBoard, false);
                     
                     switch (errorCode) {
-                        case 1: 
-                            gameStatusText = "Termination: You have caused a blockade!";
-                            gameIsRunning=false;
-                            break;
-                        case 2: 
-                            gameStatusText = "Termination: You have caused a dead end!";
-                            gameIsRunning=false;
-                            break;
-                        case 3: 
-                            gameStatusText = "Termination: You have caused a split!";
-                            gameIsRunning=false;
-                            break;
-                        case 4:
-                            gameStatusText = "Termination: You have won!";
-                            gameIsRunning = false;
-                            break;
-                        case 12:
-                            gameStatusText = "Termination: You have caused a blockade and a dead end!";
-                            gameIsRunning = false;
-                            break;
-                        case 13:
-                            gameStatusText = "Termination: You have caused a blockade and a split!";
-                            gameIsRunning = false;
-                            break;
-                        case 23:
-                            gameStatusText = "Termination: You have caused a dead end and a split!";
-                            gameIsRunning = false;
-                            break;
-                        case 123:
-                            gameStatusText = "Termination: You have caused a blockade, a dead end and split!";
-                            gameIsRunning = false;
-                            break;    
-                        case 0:
-                            if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1){
-                                gameStatusText = "Termination: Impasse!";
-                                gameIsRunning = false;
-                            }
+                        case 1 -> gameStatusText = "You have caused a blockade!";
+                        case 2 -> gameStatusText = "You have caused a dead end!";
+                        case 3 -> gameStatusText = "You have caused a split!";
+                        case 4 -> gameStatusText = "You have won!";
+                        case 12 -> gameStatusText = "You have caused a blockade and a dead end!";
+                        case 13 -> gameStatusText = "You have caused a blockade and a split!";
+                        case 23 -> gameStatusText = "You have caused a dead end and a split!";
+                        case 123 -> gameStatusText = "You have caused a blockade, a dead end and split!";
+                        case 0 -> {
+                            if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1)
+                                gameStatusText = "Impasse!";
                             else
                                 gameStatusText = "Valid";
-                            break;
+                        }
                     }                    
                 }
             } else {
