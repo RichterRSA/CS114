@@ -137,58 +137,21 @@ public class SUxxxxxxxx {
 
                     boolean isNum = false;
             
-            switch (c) {
+                    switch (c) {
                         case 'd' -> xPosNew++;
                         case 'a' -> xPosNew--;
                         case 'w' -> yPosNew--;
                         case 's' -> yPosNew++;
-                        case 'q' -> gameIsRunning = false;
+                        case 'q' -> {
+                            gameIsRunning = false;
+                            System.exit(0);
+                        }
                         case 'x' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
                         default ->{
                             if(isInt(c+""))
                                 isNum = true;
-            
-            }
-            }
-            
-                
-                        
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //char c = Character.toUpperCase(StdIn.readChar());
-//                    char c = StdDraw.nextKeyTyped();
-//                    int xPosNew = xPos;
-//                    int yPosNew = yPos;
-//                    
-//                    boolean isNum = false;
-//                    
-//                    switch (c) {
-//                        case 'd' -> xPosNew++;
-//                        case 'a' -> xPosNew--;
-//                        case 'w' -> yPosNew--;
-//                        case 's' -> yPosNew++;
-//                        case 'q' -> gameIsRunning = false;
-//                        case 'x' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
-//                        default -> {
-//                            if(isInt(c+""))
-//                                isNum = true;
-//                        }
-                    
+                        }
+                    }
 
                     xPosNew = clampInt(xPosNew, 0, boardSize-1);
                     yPosNew = clampInt(yPosNew, 0, boardSize-1);
