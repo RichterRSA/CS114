@@ -111,7 +111,9 @@ public class SUxxxxxxxx {
             //gameIsRunning = false;
             
             if(gui==1){
+                //StdDraw.setCanvasSize(600,600);
                 StdDraw.clear(Color.BLACK);
+                
                 DrawPosition(xPos, yPos, blockSize);
                 DrawGame(gameBoard, boardSize, blockSize);
                 StdDraw.setPenColor(Color.RED);
@@ -120,25 +122,73 @@ public class SUxxxxxxxx {
                
                 
                 //Input
-                if(StdIn.hasNextLine()){
-                    char c = Character.toUpperCase(StdIn.readChar());
+                //if(StdIn.hasNextLine()){
+                    
+                    
                     int xPosNew = xPos;
                     int yPosNew = yPos;
-                    
+                   
+
+            while (!StdDraw.hasNextKeyTyped());
+            char c =  StdDraw.nextKeyTyped();
+            StdDraw.pause(100);
+
+                    //char c = Character.toUpperCase(StdIn.readChar());
+
                     boolean isNum = false;
-                    
-                    switch (c) {
-                        case 'D' -> xPosNew++;
-                        case 'A' -> xPosNew--;
-                        case 'W' -> yPosNew--;
-                        case 'S' -> yPosNew++;
-                        case 'Q' -> gameIsRunning = false;
-                        case 'X' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
-                        default -> {
+            
+            switch (c) {
+                        case 'd' -> xPosNew++;
+                        case 'a' -> xPosNew--;
+                        case 'w' -> yPosNew--;
+                        case 's' -> yPosNew++;
+                        case 'q' -> gameIsRunning = false;
+                        case 'x' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+                        default ->{
                             if(isInt(c+""))
                                 isNum = true;
-                        }
-                    }
+            
+            }
+            }
+            
+                
+                        
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //char c = Character.toUpperCase(StdIn.readChar());
+//                    char c = StdDraw.nextKeyTyped();
+//                    int xPosNew = xPos;
+//                    int yPosNew = yPos;
+//                    
+//                    boolean isNum = false;
+//                    
+//                    switch (c) {
+//                        case 'd' -> xPosNew++;
+//                        case 'a' -> xPosNew--;
+//                        case 'w' -> yPosNew--;
+//                        case 's' -> yPosNew++;
+//                        case 'q' -> gameIsRunning = false;
+//                        case 'x' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+//                        default -> {
+//                            if(isInt(c+""))
+//                                isNum = true;
+//                        }
+                    
 
                     xPosNew = clampInt(xPosNew, 0, boardSize-1);
                     yPosNew = clampInt(yPosNew, 0, boardSize-1);
@@ -176,7 +226,7 @@ public class SUxxxxxxxx {
                         }
                     }                    
                 }
-            } else {
+             else {
                 
                 if(getScoreAccurate(gameBoard, boardSize)==100){
                     StdOut.println("Termination: You have won!");
@@ -479,8 +529,9 @@ public class SUxxxxxxxx {
         }
     }
     
-    private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){        
-        for (int y=0; y<boardSize; y++) {
+    private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){  
+        
+        for (int y=0; y<boardSize-1; y++) {
             for (int x=0; x<boardSize; x++){                
                 StdDraw.setPenColor(getTileColor(gameBoard[y][x]));
                 StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2-0.005);
