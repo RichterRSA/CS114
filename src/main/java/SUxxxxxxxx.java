@@ -320,7 +320,7 @@ public class SUxxxxxxxx {
                     StdOut.println();
 
                     //Handle blockade
-                    int errorCode = moveValidator(k, gameBoard, false);
+                    int errorCode = moveValidator(k, gameBoard);
 
                     if(errorCode==1){
                         StdOut.println("Termination: Blockade!");
@@ -402,7 +402,7 @@ public class SUxxxxxxxx {
                             }
                         }              
 
-                        int errorCode = moveValidator(k, gameBoard, false);
+                        int errorCode = moveValidator(k, gameBoard);
 
                         //update game status text
                         switch (errorCode) {
@@ -552,7 +552,7 @@ public class SUxxxxxxxx {
                     DrawGameText(gameBoard, boardSize);
                     StdOut.println();
 
-                    int errorCode = moveValidator(k, gameBoard, false);
+                    int errorCode = moveValidator(k, gameBoard);
 
                     //handle errors and terminate game
                     switch (errorCode) {
@@ -631,7 +631,7 @@ public class SUxxxxxxxx {
                         if (x<boardSize-1)
                             gameBoard[y][x+1] = 0;
                         
-                        int result = moveValidator(k, gameBoard, false);
+                        int result = moveValidator(k, gameBoard);
                         
                         if (result==0){
                             impasse = false;
@@ -972,7 +972,7 @@ public class SUxxxxxxxx {
         return false;
     }
 
-    public static int moveValidator(int k, byte[][] gameboard, boolean self_solver){
+    private static int moveValidator(int k, byte[][] gameboard){
         boolean blockade = false;
         boolean dead_end = false;
         boolean split = false;
