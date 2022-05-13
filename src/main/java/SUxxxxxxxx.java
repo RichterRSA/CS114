@@ -109,234 +109,458 @@ public class SUxxxxxxxx {
         // Enter the game loop. What will happen if you initialize gameIsRunning to false?
         while (gameIsRunning) {
             //gameIsRunning = false;
-            
-            if(gui==1){
-                //StdDraw.setCanvasSize(600,600);
-                StdDraw.clear(Color.BLACK);
-                
-                DrawPosition(xPos, yPos, blockSize);
-                DrawGame(gameBoard, boardSize, blockSize);
-                StdDraw.setPenColor(Color.RED);
-                StdDraw.text(0.5, 0.01, gameStatusText);
-                StdDraw.show();
-               
-                
-                //Input
-                //if(StdIn.hasNextLine()){
-                    
-                    
-                    int xPosNew = xPos;
-                    int yPosNew = yPos;
-                   
+            if (mode==0){
+                if(gui==1){
+                    //StdDraw.setCanvasSize(600,600);
+                    StdDraw.clear(Color.BLACK);
 
-            while (!StdDraw.hasNextKeyTyped());
-            char c =  StdDraw.nextKeyTyped();
-            StdDraw.pause(100);
+                    DrawPosition(xPos, yPos, blockSize);
+                    DrawGame(gameBoard, boardSize, blockSize);
+                    StdDraw.setPenColor(Color.RED);
+                    StdDraw.text(0.5, 0.01, gameStatusText);
+                    StdDraw.show();
 
-                    //char c = Character.toUpperCase(StdIn.readChar());
 
-                    boolean isNum = false;
-            
-                    switch (c) {
-                        case 'd' -> xPosNew++;
-                        case 'a' -> xPosNew--;
-                        case 'w' -> yPosNew--;
-                        case 's' -> yPosNew++;
-                        case 'q' -> {
-                            gameIsRunning = false;
-                            System.exit(0);
+                    //Input
+                    //if(StdIn.hasNextLine()){
+
+
+                        int xPosNew = xPos;
+                        int yPosNew = yPos;
+
+
+                    while (!StdDraw.hasNextKeyTyped());
+                    char c =  StdDraw.nextKeyTyped();
+                    StdDraw.pause(100);
+
+                        //char c = Character.toUpperCase(StdIn.readChar());
+
+                        boolean isNum = false;
+
+                        switch (c) {
+                            case 'd':
+                                xPosNew++;
+                                break;
+                            case 'a': 
+                                xPosNew--;
+                                break;
+                            case 'w': 
+                                yPosNew--;
+                                break;
+                            case 's': 
+                                yPosNew++;
+                                break;
+                            case 'q': 
+                                gameIsRunning = false;
+                                System.exit(0);
+                                break;
+                            case 'x':
+                                gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+                                break;
+                            default :
+                                if(isInt(c+""))
+                                    isNum = true;
+                                break;
+                            
                         }
-                        case 'x' -> gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
-                        default ->{
-                            if(isInt(c+""))
-                                isNum = true;
+
+                        xPosNew = clampInt(xPosNew, 0, boardSize-1);
+                        yPosNew = clampInt(yPosNew, 0, boardSize-1);
+
+                        if (canMove(gameBoard, xPosNew, yPosNew)){
+                            xPos = xPosNew;
+                            yPos = yPosNew;
                         }
-                    }
 
-                    xPosNew = clampInt(xPosNew, 0, boardSize-1);
-                    yPosNew = clampInt(yPosNew, 0, boardSize-1);
+                        if (isNum){
+                            int num = Integer.parseInt(c+"");
+                            if (num == clampInt(num, 0, n-1) && gameBoard[yPos][xPos]==1){
+                                gameBoard[yPos][xPos] = (byte)(num + 2);
+                                if(xPos<gameBoard.length-1)
+                                    gameBoard[yPos][xPos+1] = 1;
+                            }
+                        }              
 
-                    if (canMove(gameBoard, xPosNew, yPosNew)){
-                        xPos = xPosNew;
-                        yPos = yPosNew;
-                    }
-                    
-                    if (isNum){
-                        int num = Integer.parseInt(c+"");
-                        if (num == clampInt(num, 0, n-1) && gameBoard[yPos][xPos]==1){
-                            gameBoard[yPos][xPos] = (byte)(num + 2);
-                            if(xPos<gameBoard.length-1)
-                                gameBoard[yPos][xPos+1] = 1;
-                        }
-                    }              
-                    
-                    int errorCode = move_validator_new(k, gameBoard, false);
-                    
-                    switch (errorCode) {
-                        case 1 -> gameStatusText = "You have caused a blockade!";
-                        case 2 -> gameStatusText = "You have caused a dead end!";
-                        case 3 -> gameStatusText = "You have caused a split!";
-                        case 4 -> gameStatusText = "You have won!";
-                        case 12 -> gameStatusText = "You have caused a blockade and a dead end!";
-                        case 13 -> gameStatusText = "You have caused a blockade and a split!";
-                        case 23 -> gameStatusText = "You have caused a dead end and a split!";
-                        case 123 -> gameStatusText = "You have caused a blockade, a dead end and split!";
-                        case 0 -> {
-                            if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1)
-                                gameStatusText = "Impasse!";
-                            else
-                                gameStatusText = "Valid";
-                        }
-                    }                    
-                }
-             else {
-                
-                if(getScoreAccurate(gameBoard, boardSize)==100){
-                    StdOut.println("Termination: You have won!");
-                    break;
-                }
-                
-                StdOut.print("Move: ");                
-                
-                String sMove = "";
-                
-                if(StdIn.isEmpty())
-                    return;
-                
-                try {
-                    sMove = StdIn.readString();
-                }
-                catch(Exception e){
-                    gameIsRunning = false;
-                }
-                
-                if (!isInt(sMove))
-                    continue;
-                int iMove = Integer.parseInt(sMove);
-                
-                if((clampInt(iMove, 0, 2) != iMove)){
-                    StdOut.println("Invalid move: Unknown move!");
-                    continue;  
-                }
-                
-                if (iMove==2){
-                    StdOut.println("Termination: User terminated game!");
-                    gameIsRunning=false;
-                    continue;
-                }
-                
-                String sRow, sCol;
-                int iRow, iCol;
-                
-                //Get row to affect
-                StdOut.print("Row Number: ");
-                sRow = StdIn.readString();
-                //Is value a number?
-                if (!isInt(sRow))
-                    continue;
-                iRow = Integer.parseInt(sRow);
+                        boolean blockade = blockade_detect(k, gameBoard);
 
-                //get column to affect
-                StdOut.print("Column Number: ");
-                sCol = StdIn.readString();
-                //is value a number?
-                if (!isInt(sCol))
-                    continue;
-                iCol = Integer.parseInt(sCol);
-                
-                if(iMove==0){//delete row          
-                    if (isGameRowEmpty(gameBoard, boardSize, iRow)){
-                        StdOut.println("Invalid move: Nothing to delete!");
-                        continue;  
+                        if(blockade)
+                            gameStatusText = "You have caused a blockade!";
+                        else 
+                            gameStatusText = "Valid";
+                                           
                     }
-                    
-                    //is value valid?
-                    if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
-                        StdOut.println("Invalid move: Outside of board!");
-                        continue;  
-                    }
+                 else {
 
-                    gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
-                    
-                } else {//place block
-                    StdOut.print("Color: ");
-                    String sClr = StdIn.readString();
-                    if (!isInt(sClr))
-                        continue;
-                    byte iClr = Byte.parseByte(sClr);
-                    
-                                    //is value valid?
-                    if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
-                        StdOut.println("Invalid move: Outside of board!");
-                        continue;  
-                    }
-                    
-                    if((clampInt(iClr, 0, n-1)!=iClr)){
-                        StdOut.println("Invalid move: Unknown color!");
-                        continue;
-                    }
-                    
-                    if(gameBoard[iRow][iCol]!=1){
-                        StdOut.println("Invalid move: Cell is not open!");
-                        continue;
-                    }
-                    
-                    gameBoard[iRow][iCol] = (byte) (2 + iClr);
-                    if(iCol<boardSize-1)
-                        if(gameBoard[iRow][iCol+1]==0)
-                            gameBoard[iRow][iCol+1] = 1;
-                }
-                
-                moveCount++;
-                
-                StdOut.println();
-                DrawGameText(gameBoard, boardSize);
-                StdOut.println();
-                
-                int errorCode = move_validator_new(k, gameBoard, false);
-                
-                switch (errorCode) {
-                    case 1: 
-                        StdOut.println("Termination: You have caused a blockade!");
-                        gameIsRunning=false;
-                        break;
-                    case 2: 
-                        StdOut.println("Termination: You have caused a dead end!");
-                        gameIsRunning=false;
-                        break;
-                    case 3: 
-                        StdOut.println("Termination: You have caused a split!");
-                        gameIsRunning=false;
-                        break;
-                    case 4:
+                    if(getScoreAccurate(gameBoard, boardSize)==100){
                         StdOut.println("Termination: You have won!");
-                        gameIsRunning = false;
                         break;
-                    case 12:
-                        StdOut.println("Termination: You have caused a blockade and a dead end!");
+                    }
+
+                    StdOut.print("Move: ");                
+
+                    String sMove = "";
+
+                    if(StdIn.isEmpty())
+                        return;
+
+                    try {
+                        sMove = StdIn.readString();
+                    }
+                    catch(Exception e){
                         gameIsRunning = false;
-                        break;
-                    case 13:
-                        StdOut.println("Termination: You have caused a blockade and a split!");
-                        gameIsRunning = false;
-                        break;
-                    case 23:
-                        StdOut.println("Termination: You have caused a dead end and a split!");
-                        gameIsRunning = false;
-                        break;
-                    case 123:
-                        StdOut.println("Termination: You have caused a blockade, a dead end and split!");
-                        gameIsRunning = false;
-                        break;    
-                    case 0:
-                        if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1){
-                            StdOut.println("Termination: Impasse!" );
-                            gameIsRunning = false;
+                    }
+
+                    if (!isInt(sMove))
+                        continue;
+                    int iMove = Integer.parseInt(sMove);
+
+                    if((clampInt(iMove, 0, 2) != iMove)){
+                        StdOut.println("Invalid move: Unknown move!");
+                        continue;  
+                    }
+
+                    if (iMove==2){
+                        StdOut.println("Termination: User terminated game!");
+                        gameIsRunning=false;
+                        continue;
+                    }
+
+                    String sRow, sCol;
+                    int iRow, iCol;
+
+                    //Get row to affect
+                    StdOut.print("Row Number: ");
+                    sRow = StdIn.readString();
+                    //Is value a number?
+                    if (!isInt(sRow))
+                        continue;
+                    iRow = Integer.parseInt(sRow);
+
+                    //get column to affect
+                    StdOut.print("Column Number: ");
+                    sCol = StdIn.readString();
+                    //is value a number?
+                    if (!isInt(sCol))
+                        continue;
+                    iCol = Integer.parseInt(sCol);
+
+                    if(iMove==0){//delete row          
+                        if (isGameRowEmpty(gameBoard, boardSize, iRow)){
+                            StdOut.println("Invalid move: Nothing to delete!");
+                            continue;  
                         }
-                        break;
+
+                        //is value valid?
+                        if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
+                            StdOut.println("Invalid move: Outside of board!");
+                            continue;  
+                        }
+
+                        gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
+
+                    } else {//place block
+                        StdOut.print("Color: ");
+                        String sClr = StdIn.readString();
+                        if (!isInt(sClr))
+                            continue;
+                        byte iClr = Byte.parseByte(sClr);
+
+                                        //is value valid?
+                        if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
+                            StdOut.println("Invalid move: Outside of board!");
+                            continue;  
+                        }
+
+                        if((clampInt(iClr, 0, n-1)!=iClr)){
+                            StdOut.println("Invalid move: Unknown color!");
+                            continue;
+                        }
+
+                        if(gameBoard[iRow][iCol]!=1){
+                            StdOut.println("Invalid move: Cell is not open!");
+                            continue;
+                        }
+
+                        gameBoard[iRow][iCol] = (byte) (2 + iClr);
+                        if(iCol<boardSize-1)
+                            if(gameBoard[iRow][iCol+1]==0)
+                                gameBoard[iRow][iCol+1] = 1;
+                    }
+
+                    moveCount++;
+
+                    StdOut.println();
+                    DrawGameText(gameBoard, boardSize);
+                    StdOut.println();
+
+                    int errorCode = move_validator_new(k, gameBoard, false);
+
+                    switch (errorCode) {
+                        case 1: 
+                            StdOut.println("Termination: Blockade!");
+                            gameIsRunning=false;
+                            break;
+                    }
+
+
                 }
-                
-               
+            }
+            else {
+                if(gui==1){
+                    //StdDraw.setCanvasSize(600,600);
+                    StdDraw.clear(Color.BLACK);
+
+                    DrawPosition(xPos, yPos, blockSize);
+                    DrawGame(gameBoard, boardSize, blockSize);
+                    StdDraw.setPenColor(Color.RED);
+                    StdDraw.text(0.5, 0.01, gameStatusText);
+                    StdDraw.show();
+
+
+                    //Input
+                    //if(StdIn.hasNextLine()){
+
+
+                        int xPosNew = xPos;
+                        int yPosNew = yPos;
+
+
+                    while (!StdDraw.hasNextKeyTyped());
+                    char c =  StdDraw.nextKeyTyped();
+                    StdDraw.pause(100);
+
+                        //char c = Character.toUpperCase(StdIn.readChar());
+
+                        boolean isNum = false;
+
+                        switch (c) {
+                            case 'd':
+                                xPosNew++;
+                                break;
+                            case 'a': 
+                                xPosNew--;
+                                break;
+                            case 'w': 
+                                yPosNew--;
+                                break;
+                            case 's': 
+                                yPosNew++;
+                                break;
+                            case 'q': 
+                                gameIsRunning = false;
+                                System.exit(0);
+                                break;
+                            case 'x':
+                                gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+                                break;
+                            default :
+                                if(isInt(c+""))
+                                    isNum = true;
+                                break;
+                            
+                        }
+
+                        xPosNew = clampInt(xPosNew, 0, boardSize-1);
+                        yPosNew = clampInt(yPosNew, 0, boardSize-1);
+
+                        if (canMove(gameBoard, xPosNew, yPosNew)){
+                            xPos = xPosNew;
+                            yPos = yPosNew;
+                        }
+
+                        if (isNum){
+                            int num = Integer.parseInt(c+"");
+                            if (num == clampInt(num, 0, n-1) && gameBoard[yPos][xPos]==1){
+                                gameBoard[yPos][xPos] = (byte)(num + 2);
+                                if(xPos<gameBoard.length-1)
+                                    gameBoard[yPos][xPos+1] = 1;
+                            }
+                        }              
+
+                        int errorCode = move_validator_new(k, gameBoard, false);
+
+                        switch (errorCode) {
+                            case 1: 
+                                gameStatusText = "You have caused a blockade!";
+                                break;
+                            case 2: 
+                                gameStatusText = "You have caused a dead end!";
+                                break;
+                            case 3: 
+                                gameStatusText = "You have caused a split!";
+                                break;
+                            case 4: 
+                                gameStatusText = "You have won!";
+                                break;
+                            case 12: 
+                                gameStatusText = "You have caused a blockade and a dead end!";
+                                break;
+                            case 13: 
+                                gameStatusText = "You have caused a blockade and a split!";
+                                break;
+                            case 23:
+                                    gameStatusText = "You have caused a dead end and a split!";
+                                    break;
+                            case 123: 
+                                gameStatusText = "You have caused a blockade, a dead end and split!";
+                                break;
+                            case 0: 
+                                if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1)
+                                    gameStatusText = "Impasse!";
+                                else
+                                    gameStatusText = "Valid";
+                                break;
+                        }                    
+                    }
+                 else {
+
+                    if(getScoreAccurate(gameBoard, boardSize)==100){
+                        StdOut.println("Termination: You have won!");
+                        break;
+                    }
+
+                    StdOut.print("Move: ");                
+
+                    String sMove = "";
+
+                    if(StdIn.isEmpty())
+                        return;
+
+                    try {
+                        sMove = StdIn.readString();
+                    }
+                    catch(Exception e){
+                        gameIsRunning = false;
+                    }
+
+                    if (!isInt(sMove))
+                        continue;
+                    int iMove = Integer.parseInt(sMove);
+
+                    if((clampInt(iMove, 0, 2) != iMove)){
+                        StdOut.println("Invalid move: Unknown move!");
+                        continue;  
+                    }
+
+                    if (iMove==2){
+                        StdOut.println("Termination: User terminated game!");
+                        gameIsRunning=false;
+                        continue;
+                    }
+
+                    String sRow, sCol;
+                    int iRow, iCol;
+
+                    //Get row to affect
+                    StdOut.print("Row Number: ");
+                    sRow = StdIn.readString();
+                    //Is value a number?
+                    if (!isInt(sRow))
+                        continue;
+                    iRow = Integer.parseInt(sRow);
+
+                    //get column to affect
+                    StdOut.print("Column Number: ");
+                    sCol = StdIn.readString();
+                    //is value a number?
+                    if (!isInt(sCol))
+                        continue;
+                    iCol = Integer.parseInt(sCol);
+
+                    if(iMove==0){//delete row          
+                        if (isGameRowEmpty(gameBoard, boardSize, iRow)){
+                            StdOut.println("Invalid move: Nothing to delete!");
+                            continue;  
+                        }
+
+                        //is value valid?
+                        if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
+                            StdOut.println("Invalid move: Outside of board!");
+                            continue;  
+                        }
+
+                        gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
+
+                    } else {//place block
+                        StdOut.print("Color: ");
+                        String sClr = StdIn.readString();
+                        if (!isInt(sClr))
+                            continue;
+                        byte iClr = Byte.parseByte(sClr);
+
+                                        //is value valid?
+                        if((clampInt(iCol, 0, boardSize-1) != iCol) || (clampInt(iRow, 0, boardSize-1) != iRow)){
+                            StdOut.println("Invalid move: Outside of board!");
+                            continue;  
+                        }
+
+                        if((clampInt(iClr, 0, n-1)!=iClr)){
+                            StdOut.println("Invalid move: Unknown color!");
+                            continue;
+                        }
+
+                        if(gameBoard[iRow][iCol]!=1){
+                            StdOut.println("Invalid move: Cell is not open!");
+                            continue;
+                        }
+
+                        gameBoard[iRow][iCol] = (byte) (2 + iClr);
+                        if(iCol<boardSize-1)
+                            if(gameBoard[iRow][iCol+1]==0)
+                                gameBoard[iRow][iCol+1] = 1;
+                    }
+
+                    moveCount++;
+
+                    StdOut.println();
+                    DrawGameText(gameBoard, boardSize);
+                    StdOut.println();
+
+                    int errorCode = move_validator_new(k, gameBoard, false);
+
+                    switch (errorCode) {
+                        case 1: 
+                            StdOut.println("Termination: You have caused a blockade!");
+                            gameIsRunning=false;
+                            break;
+                        case 2: 
+                            StdOut.println("Termination: You have caused a dead end!");
+                            gameIsRunning=false;
+                            break;
+                        case 3: 
+                            StdOut.println("Termination: You have caused a split!");
+                            gameIsRunning=false;
+                            break;
+                        case 4:
+                            StdOut.println("Termination: You have won!");
+                            gameIsRunning = false;
+                            break;
+                        case 12:
+                            StdOut.println("Termination: You have caused a blockade and a dead end!");
+                            gameIsRunning = false;
+                            break;
+                        case 13:
+                            StdOut.println("Termination: You have caused a blockade and a split!");
+                            gameIsRunning = false;
+                            break;
+                        case 23:
+                            StdOut.println("Termination: You have caused a dead end and a split!");
+                            gameIsRunning = false;
+                            break;
+                        case 123:
+                            StdOut.println("Termination: You have caused a blockade, a dead end and split!");
+                            gameIsRunning = false;
+                            break;    
+                        case 0:
+                            if(isImpasse(gameBoard, n, k) && getBlocksLeft(gameBoard)>1){
+                                StdOut.println("Termination: Impasse!" );
+                                gameIsRunning = false;
+                            }
+                            break;
+                    }
+
+
+                }
             }
         }
         // What will happen if you remove the "gameIsRunning = false" statement inside the While loop? 
