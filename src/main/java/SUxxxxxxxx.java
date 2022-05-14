@@ -163,6 +163,7 @@ public class SUxxxxxxxx {
                                 break;
                             case 'x':
                                 gameBoard = deleteGameRow(gameBoard, gameBoard.length, yPos, xPos);
+                                moveCount++;
                                 break;
                             default :
                                 if(isInt(c+""))
@@ -189,6 +190,7 @@ public class SUxxxxxxxx {
                                 gameBoard[yPos][xPos] = (byte)(num + 2);
                                 if(xPos<gameBoard.length-1)
                                     gameBoard[yPos][xPos+1] = 1;
+                                moveCount++;
                             }
                         }              
                         
@@ -274,6 +276,7 @@ public class SUxxxxxxxx {
                         }
 
                         gameBoard = deleteGameRow(gameBoard, boardSize, iRow, iCol);
+                        
 
                     } else {//place block
                         
