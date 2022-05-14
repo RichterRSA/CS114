@@ -97,6 +97,8 @@ public class SUxxxxxxxx {
     
         boolean gameIsRunning = true;
         // "gameIsRunning" is an example of a game state variable. Add more as you see fit.
+        
+        boolean blockade = false;
 
         // Enter the game loop. What will happen if you initialize gameIsRunning to false?
         while (gameIsRunning) {
@@ -114,7 +116,18 @@ public class SUxxxxxxxx {
                     
                     //draw bottom status text
                     StdDraw.setPenColor(Color.RED);
-                    StdDraw.text(0.5, 0.01, gameStatusText);
+                     //Display game statistics when game is terminated due to a mistake
+                    if (blockade){
+                    StdDraw.text(0.25, 0.08, gameStatusText);
+                    StdDraw.text(0.25, 0.04, ("Score: " + getScore(gameBoard, boardSize) + "%"));
+                    StdDraw.text(0.75, 0.04, "Moves: " + moveCount);
+                    StdDraw.text(0.75, 0.08, "Game ended!");
+                    StdDraw.show();
+                                 }
+                    //Display confirmation that a move is valid
+                    else{
+                        StdDraw.text(0.5, 0.08, gameStatusText);
+                    }
                     //do for double buffering:
                     StdDraw.show();
 
@@ -180,7 +193,7 @@ public class SUxxxxxxxx {
                         }              
                         
                         //we only check for blockades
-                        boolean blockade = blockadeDetect(k, gameBoard);
+                         blockade = blockadeDetect(k, gameBoard);
 
                         //update status text
                         if(blockade)
