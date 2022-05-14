@@ -1,19 +1,6 @@
-
 import java.awt.Color;
-//
-//// Notes on using this skeleton:
-//// - The names of variables and functions (both those given in the skeleton and those made by yourself) are up to you, as long as they are sensible.
-//// - You should document your code well with comments and (as stated above) sensible & logical names.
-//// - You are free to delete the comments typed in this skeleton.
-//// - Remember to follow the code specifications given in the project description.
-//
-//
-//// Replace "xxxxxxxx" below with your student number.  Remember to rename this file accordingly.
 public class SUxxxxxxxx {
 
-    // No global variables or constants allowed.
-
-    // For the first hand-in, it is possible and highly recommended to code the entire program within the main function.
     public static void main(String[] args) {
         //get game mode (0=first hand in, 1=second, 2=automatic solver)
         //change
@@ -83,7 +70,7 @@ public class SUxxxxxxxx {
         byte[][] gameBoard = new byte[boardSize][boardSize];
         
         //Determine how big blocks are to draw (for gui)
-        double blockSize=1.0/boardSize;
+        double blockSize=0.9/boardSize;
                
         //set game board default values & drawing
         for (int y=0; y<boardSize; y++) {
@@ -329,6 +316,8 @@ public class SUxxxxxxxx {
                 }
             }
             else {
+                //Error code for case statement
+                int errorCode = moveValidator(k, gameBoard);
                 if(gui==1){
                     //clear window
                     StdDraw.clear(Color.BLACK);
@@ -340,7 +329,17 @@ public class SUxxxxxxxx {
                     
                     //show debug text
                     StdDraw.setPenColor(Color.RED);
-                    StdDraw.text(0.5, 0.01, gameStatusText);
+                    if (errorCode>0){
+                        StdDraw.text(0.25, 0.08, gameStatusText);
+                        StdDraw.text(0.25, 0.04, ("Score: " + getScore(gameBoard, boardSize) + "%"));
+                        StdDraw.text(0.75, 0.04, "Moves: " + moveCount);
+                        StdDraw.text(0.75, 0.08, "Game ended!");
+                        StdDraw.show();
+                    }
+                    //Display confirmation that a move is valid
+                    else{
+                        StdDraw.text(0.5, 0.08, gameStatusText);
+                    }
                     StdDraw.show();
 
                     //use temp values to validate if the next move is valid
@@ -401,8 +400,6 @@ public class SUxxxxxxxx {
                                     gameBoard[yPos][xPos+1] = 1;
                             }
                         }              
-
-                        int errorCode = moveValidator(k, gameBoard);
 
                         //update game status text
                         switch (errorCode) {
@@ -551,8 +548,6 @@ public class SUxxxxxxxx {
                     StdOut.println();
                     DrawGameText(gameBoard, boardSize);
                     StdOut.println();
-
-                    int errorCode = moveValidator(k, gameBoard);
 
                     //handle errors and terminate game
                     switch (errorCode) {
@@ -779,12 +774,12 @@ public class SUxxxxxxxx {
     //Summary:
     //Draws the game using the specified block size
     private static void DrawGame(byte[][] gameBoard, int boardSize, double blockSize){  
-        
-        for (int y=0; y<boardSize-1; y++) {
+        for (int y=0; y<=boardSize; y++) {
+            if (y<boardSize){
             for (int x=0; x<boardSize; x++){                
                 StdDraw.setPenColor(getTileColor(gameBoard[y][x]));
-                StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2-0.005);
-            }
+                StdDraw.filledSquare((blockSize/2+x*(blockSize))+ 0.05, (1-blockSize/2-y*(blockSize)), ((blockSize)/2-0.005));
+            }}
         }
     }
     
@@ -792,7 +787,7 @@ public class SUxxxxxxxx {
     //Shows the game board in the console
     private static void DrawGameText(byte[][] gameBoard, int boardSize){
         String line;
-        
+       
         for (int y=0; y<boardSize; y++) {
             line = "";
             for (int x=0; x<boardSize; x++){                
@@ -806,7 +801,7 @@ public class SUxxxxxxxx {
     //Draws the selection rectangle from the player position
     private static void DrawPosition(int x, int y, double blockSize){
         StdDraw.setPenColor(Color.MAGENTA);
-        StdDraw.filledSquare(blockSize/2+x*blockSize, 1-blockSize/2-y*blockSize, blockSize/2);
+        StdDraw.filledSquare(blockSize/2+x*blockSize + 0.05, 1-blockSize/2-y*blockSize, blockSize/2);
     }
     
     //Summary:
